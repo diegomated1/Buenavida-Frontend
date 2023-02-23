@@ -1,0 +1,22 @@
+:root {
+    --green-1: #5ccb5f;
+    --green-2: #009929;
+    --green-3: #006414;
+    --red-1: #ef2947;
+    --red-2: #e80729;
+    --orange-1: #f3b24a;
+    --orange-2: #efa229;
+}
+
+html {
+    font-family: 'WorkSans-Regular', Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}

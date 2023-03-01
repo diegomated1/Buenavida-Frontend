@@ -1,0 +1,123 @@
+:root{
+    --p-heigth: 350px;
+    --p-width: 250px;
+}
+
+.products-grilla {
+    display: grid;  
+    grid-template-columns: repeat(4, 250px);
+    grid-template-rows: repeat(3, 350px);
+    row-gap: 10px;
+    justify-content: space-evenly;
+}
+
+.products-pages-container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 50px;
+}
+
+.products-paginator {
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.products-page {
+    width: 35px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products-page-number {
+    width: 30px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.products-page-number:hover {
+    background-color: beige;
+}
+
+@media all and (max-width: 1240px) {
+    .products-grilla {
+        grid-template-columns: repeat(3, 250px);
+        grid-template-rows: repeat(4, 350px);
+    }
+}
+
+@media all and (max-width: 980px) {
+    .products-grilla {
+        grid-template-columns: repeat(2, 250px);
+        grid-template-rows: repeat(5, 350px);
+    }
+}
+
+@media all and (max-width: 718px) {
+    .products-grilla {
+        grid-template-columns: repeat(1, 250px);
+        grid-template-rows: repeat(6, 350px);
+    }
+}
+
+
+.product {
+
+}
+
+.product-offert {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.product-image {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-name {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-description {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+}
+.product-desc-cant{
+    color: #3e3e3e;
+}
+.product-desc{
+    color: #9b9b9b;
+}
+
+.product-price {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--green-1);
+}
+

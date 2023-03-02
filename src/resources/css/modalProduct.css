@@ -1,0 +1,154 @@
+
+#modal-product{
+    position: absolute;
+    width: 900px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid gray;
+    visibility: visible;
+    border-radius: 10px;
+    display: flex;
+    background-color: white;
+}
+
+#modal-product-image{
+    flex: 2;
+}
+
+#modal-product-info{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-product-info-top{
+    display: flex;
+}
+
+#modal-product-info-fav{
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-product-icons{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-product-icon{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#modal-product-info-stock{
+    font-size: large;
+    color: rgb(122, 121, 121);
+}
+
+#modal-product-info-price{
+    font-size: x-large;
+    color: var(--green-2);
+}
+
+#modal-product-info-price-by-unit{
+    font-size: small;
+    color: rgb(122, 121, 121);
+}
+
+#modal-product-info-description{
+    font-size: medium;
+    color: rgb(122, 121, 121);
+    padding-right: 10px;
+}
+
+#modal-product-info-bottom{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+#modal-product-info-amount{
+    display: flex;
+}
+
+#info-amount{
+    width: 120px;
+    height: 50px;
+    border: 1px solid gray;
+    display: flex;
+    border-radius: 5px;
+}
+
+#info-amount-input{
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 0.5px solid gray;
+}
+
+#modal-product-info-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#info-amount-buttons{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#info-amount-buttons-more{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#info-amount-buttons-less{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.5px solid gray;
+}
+
+.info-amount-btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#modal-product-info-button{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+#modal-product-info-button > button{
+    width: 240px;
+    height: 50px;
+    background-color: var(--orange-1);
+    border: 1px solid gray;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#modal-product-info-button > button > div{
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    margin-right: 5px;
+}

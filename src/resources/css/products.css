@@ -68,9 +68,13 @@
     }
 }
 
+.product{
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-.product {
-
+.product:hover {
+    box-shadow: 1px 1px 10px #b3b3b3;
 }
 
 .product-offert {

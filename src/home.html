@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./resources/css/navbar.css">
     <link rel="stylesheet" href="./resources/css/filter.css">
     <link rel="stylesheet" href="./resources/css/products.css">
+    <link rel="stylesheet" href="./resources/css/modalProduct.css">
 </head>
 <body id="app">
     <div class="container">
@@ -18,9 +19,9 @@
                 <img src="./resources/images/logo.jpg" alt="">
             </div>
             <div class="navbar-search-bar">
-                <form method="get" class="navbar-sb" action="#">
+                <form id="search-form" method="get" class="navbar-sb" action="#">
                     <div class="navbar-sb-input-container">
-                        <input class="navbar-sb-input" type="text" placeholder="¿Qué producto estás buscando...?">
+                        <input id="search-input" class="navbar-sb-input" type="text" placeholder="¿Qué producto estás buscando...?">
                     </div>
                     <div class="navbar-sb-btn">
                         <button type="submit" class="btn">
@@ -104,7 +105,6 @@
             </div>
             <div class="right">
                 <div class="products-grilla">
-                    
                 </div>
                 <div class="products-pages-container">
                     <div class="products-paginator">
@@ -114,7 +114,71 @@
             </div>
         </div>
     </div>
+    <div id="modal-product">
+        <div id="modal-product-image">
+            <img id="modal-image" src="./resources/images/products/1.jpg" alt="">
+        </div>
+        <div id="modal-product-info">
+            <div id="modal-product-info-top">
+                <h3 id="modal-product-info-title" style="flex: 4;">Parches iluminados para el contorno de ojos</h3>
+                <div id="modal-product-info-fav">
+                    <div class="modal-product-icons">
+                        <div id="modal-favorite-btn" class="modal-product-icon">
+                            <img id="modal-favorite-img" src="./resources/images/icons/heart_filled.png" alt="">
+                        </div>
+                    </div>
+                    <div class="modal-product-icons">
+                        <div id="modal-close" class="modal-product-icon">
+                            <img src="./resources/images/icons/close.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modal-product-info-stock">
+                <span><strong id="modal-stock">60USDS</strong></span>
+            </div><br>
+            <div id="modal-product-info-price">
+                <span><strong id="modal-price">15,50 €</strong></span>
+            </div>
+            <div id="modal-product-info-price-by-unit">
+                <span id="modal-price-unit">Sale a: 0,26 €/ud</span>
+            </div>
+            <div id="modal-product-info-description">
+                <p id="modal-description">
+                    Parches iluminadores para el contorno de ojos de Natura Siberica. 60 Parches para ojos con efecto iluminador que hidratan la piel del contorno, le devuelven la vitalidad y mejoran su protección para mantenerla joven. Estos parches iluminadores son una solución rápida y cómoda para darle a tus ojos ese toque de luz y vitalidad que el estrés y la vida urbana les van quitando. Con su base de biome con activo postbiótico único y extractos fermentados de mora de los pantanos norteña y frambuesa silvestre ayudan al microbioma de la piel a aumentar su resistencia y mejorar su luminosidad. La vitamina C presente en su fórmula mejora el tono y la textura del contorno para ayudar a recuperar su brillo natural, y la niacinamida contribuye a fortalecer la barrera de hidratación de la epidermis, dando lugar a un resultado suave, esplendoroso y rejuvenecido.
+                </p>
+            </div>
+            <div id="modal-product-info-bottom">
+                <div id="modal-product-info-amount">
+                    <div id="info-amount">
+                        <div id="info-amount-input">
+                            1
+                        </div>
+                        <div id="info-amount-buttons">
+                            <button class="info-amount-btn" id="info-amount-buttons-more">
+                                <span>+</span>
+                            </button>
+                            <button class="info-amount-btn" id="info-amount-buttons-less">
+                                <span>-</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="modal-product-info-button">
+                    <button>
+                        <div>
+                            <img src="./resources/images/icons/cesta-de-la-compra.png" alt="">
+                        </div>
+                        <strong>Añadir al carrito</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./resources/data/products.js" type="module" ></script>
-    <script src="./resources/js/produtcs.js" type="module"></script>
+    <script src="./resources/js/Modal.js" type="module"></script>
+    <script src="./resources/js/similarity.js" type="module"></script>
+    <script src="./resources/js/Pages.js" type="module"></script>
+    <script src="./resources/js/User.js" type="module"></script>
 </body>
 </html>

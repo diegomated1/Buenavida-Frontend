@@ -81,4 +81,6 @@ class ModalProduct{
     }
 }
 
-export default new ModalProduct();
+const modalProduct = new ModalProduct();
+
+export default modalProduct;

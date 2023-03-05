@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./resources/css/index.css">
+    <link rel="stylesheet" href="./resources/css/cart.css">
+    <link rel="stylesheet" href="./resources/css/navbar.css">
+    <link rel="stylesheet" href="./resources/css/filter.css">
+    <link rel="stylesheet" href="./resources/css/products.css">
+    <link rel="stylesheet" href="./resources/css/modalCart.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div id="navbar-btn-home" class="navbar-logo">
+                <img src="./resources/images/logo.jpg" alt="">
+            </div>
+            <div class="navbar-search-bar">
+                <form id="search-form" method="get" class="navbar-sb" action="#">
+                    <div class="navbar-sb-input-container">
+                        <input id="search-input" class="navbar-sb-input" type="text" placeholder="¿Qué producto estás buscando...?">
+                    </div>
+                    <div class="navbar-sb-btn">
+                        <button type="submit" class="btn">
+                            <img src="./resources/images/icons/lupa.png" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="navbar-buttons">
+                <div class="navbar-btn">
+                    <button id="navbar-btn-fav" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/heart.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mis Favoritos</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button id="navbar-btn-account" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/user.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mi Cuenta</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button id="navbar-btn-cart" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/cesta-de-la-compra.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mi Carrito</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <div class="cart-top">
+                <h3>Esta es tu cesta de la compra</h3>
+            </div>
+            <div class="cart-bottom">
+                <div class="cart-products-container">
+                    <div class="cart-products-sub-container">
+                        <div class="cart-products-title">
+                            <span>3 Articulos:</span>
+                        </div>
+                        <div class="cart-products-list">
+                            <div class="cart-product-item">
+                                <div class="cart-product-image">
+                                    <img src="./resources/images/products/1.jpg" alt="">
+                                </div>
+                                <div class="cart-product-info">
+                                    <div class="cart-product-info-name">
+                                        <span><strong>Parches Supertonificantes para Contorno de Ojos</strong></span>
+                                    </div>
+                                    <div class="cart-product-info-talla">
+                                        <span>Talla: 60uds.</span>
+                                    </div>
+                                    <div class="cart-product-info-made">
+                                        <span>Marca: Natura Siberica</span>
+                                    </div>
+                                </div>
+                                <div class="cart-product-text">
+                                    <span>Cantidad</span>
+                                </div>
+                                <div class="cart-product-amount-container">
+                                    <div class="cart-product-amount-2">
+                                        <div class="cart-product-amount-input">
+                                            <input type="text" value="1">
+                                        </div>
+                                        <div class="cart-product-amount-buttons">
+                                            <div class="cart-product-amount-btn">
+                                                +
+                                            </div>
+                                            <div class="cart-product-amount-btn">
+                                                -
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart-product-total-price">
+                                    <span><strong>15,50 $</strong></span>
+                                </div>
+                                <div class="cart-product-btn-delete-container">
+                                    <button class="cart-product-btn-delete">
+                                        <img src="./resources/images/icons/trash-bin.png" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-summary-container">
+                    <div class="cart-summary">
+                        <div class="cart-summary-title">
+                            <span><strong>Resumen de tu pedido:</strong></span>
+                        </div>
+                        <div class="cart-summary-subtotal">
+                            <span>Subtotal</span>
+                            <span>48,85 $</span>
+                        </div>
+                        <div class="cart-summary-total">
+                            <span><strong>Total:</strong></span>
+                            <span><strong>48,85 $</strong></span>
+                        </div>
+                        <div class="cart-summary-extra-info">
+                            <span>(Envio no incluido)</span>
+                        </div>
+                        <div class="cart-summary-btn-confirm">
+                            <button class="cart-summary-btn">
+                                <span><strong>Realizar pedido</strong></span>
+                            </button>
+                        </div>
+                        <div class="cart-summary-question">
+                            <a href="">¿Quieres añadir más productos?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-cart">
+        <div id="modal-cart-top">
+            <div id="modal-cart-top-title">
+                <h4 id="modal-cart-title-and-length">MI CARRITO (3)</h4>
+            </div>
+            <div id="modal-cart-top-close-container">
+                <div id="modal-cart-close">
+                    <img src="./resources/images/icons/close_gray.png" alt="">
+                </div>
+            </div>
+        </div>
+        <hr class="cart-product-hr">
+        <div id="modal-cart-products">
+            
+        </div>
+        <hr class="cart-product-hr">
+        <div id="modal-cart-subtotal">
+            <div id="modal-cart-subtotal-text">
+                <span>Subtotal</span>
+            </div>
+            <div id="modal-cart-subtotal-number">
+                <span id="modal-cart-subtotal-number-text">38,40 $</span>
+            </div>
+        </div>
+        <hr class="cart-product-hr">
+        <div id="modal-cart-total">
+            <div id="modal-cart-total-text">
+                <strong>Total (IVA incluido)</strong>
+            </div>
+            <div id="modal-cart-total-number">
+                <strong id="modal-cart-total-number-text">38,40 $</strong>
+            </div>
+        </div>
+        <hr class="cart-product-hr">
+        <span id="modal-cart-products-free-ship">Te faltan 6,60$ para disfrutar del envio gratuito</span>
+        <div id="modal-cart-buttons">
+            <div class="modal-cart-btn">
+                <button id="modal-btn-go-cart">Ir al carrito</button>
+            </div>
+            <div class="modal-cart-btn">
+                <button id="modal-btn-pay">Realizar pedido</button>
+            </div>
+        </div>
+    </div>
+    <script src="./resources/js/NavBar.js" type="module" ></script>
+    <script src="./resources/data/products.js" type="module" ></script>
+    <script src="./resources/js/ModalCart.js" type="module"></script>
+    <script src="./resources/js/User.js" type="module"></script>
+</body>
+</html>

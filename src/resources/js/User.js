@@ -24,16 +24,27 @@ class User{
     }
 
     addCart(product, amount){
-        this.cart[product.id] = {product, amount};
+        if(this.cart[product.id]){
+            this.cart[product.id].amount += amount;
+        }else{
+            this.cart[product.id] = {product, amount};
+        }
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        return this.cart[product.id].amount;
     }
 
     delCart(id, amount){
         if(this.cart[id].amount == 1){
             delete this.cart[id];
         }else{
-            this.cart[id].amount = amount;
+            this.cart[id].amount -= amount;
         }
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        return this.cart[id].amount;
+    }
+
+    removeProductCart(id){
+        delete this.cart[id];
         localStorage.setItem('cart', JSON.stringify(this.cart));
     }
 

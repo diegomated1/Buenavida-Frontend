@@ -1,5 +1,10 @@
 
 import User from './User.js';
+var Cart = null;
+import("./Cart.js")
+  .then((cart) => {
+    Cart = cart.default;
+  });
 
 class ModalCart{
 
@@ -83,15 +88,24 @@ class ModalCartProduct{
         document.getElementById(`cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
             User.addCart(this.product, 1)
             modalCart.render();
+            if(Cart){
+                Cart.render();
+            }
         });
         document.getElementById(`cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
             if(this.amount==1) return;
             User.delCart(this.product.id, 1)
             modalCart.render();
+            if(Cart){
+                Cart.render();
+            }
         });
         document.getElementById(`cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
             User.removeProductCart(this.product.id);
             modalCart.render();
+            if(Cart){
+                Cart.render();
+            }
         });
     }
 

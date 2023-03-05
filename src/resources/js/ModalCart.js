@@ -20,11 +20,12 @@ class ModalCart{
         this.btnGoToCart = document.getElementById("modal-btn-go-cart");
         this.btnGoToCart = document.getElementById("modal-btn-pay");
         this.render();
+        this.addListener();
     }
 
     addListener(){
         this.closeModalBtn.addEventListener('click', (e)=>{
-            this.changeVisibilty();
+                this.changeVisibilty();
         });
     }
 
@@ -39,6 +40,7 @@ class ModalCart{
     }
 
     render(){
+        this.productList.innerHTML = "";
         let _ModalCardProducts = [];
         Object.values(User.cart).forEach(item=>{
             let _product = new ModalCartProduct(item.amount, item.product);
@@ -63,10 +65,14 @@ class ModalCartProduct{
     constructor(amount, product){
         this.product = product;
         this.amount = amount;
+        this.totalPrice = parseFloat(this.product.price)*parseInt(this.amount);
     }
 
     changeAmount(newAmount){
+        this.amount = newAmount;
         document.getElementById(`cart-amount-${this.product.id}`).innerHTML = newAmount;
+        this.totalPrice = parseFloat(this.product.price)*parseInt(this.amount);
+        document.getElementById(`cart-product-total-price-${this.product.id}`).innerHTML = `${this.totalPrice} $`;
     }
 
     addListener(){
@@ -74,6 +80,7 @@ class ModalCartProduct{
             this.changeAmount(User.addCart(this.product, 1));
         });
         document.getElementById(`cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
+            if(this.amount==1) return;
             this.changeAmount(User.delCart(this.product.id, 1));
         });
         document.getElementById(`cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
@@ -123,7 +130,7 @@ class ModalCartProduct{
                             '</div>'+
                         '</div>'+
                         '<div class="cart-product-price">'+
-                            `<span>${this.product.price} $</span>`+
+                            `<span id="cart-product-total-price-${this.product.id}">${this.totalPrice} $</span>`+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -134,5 +141,6 @@ class ModalCartProduct{
 
 }
 
+const modalCart = new ModalCart();
 
-export default new ModalCart();
+export default modalCart;

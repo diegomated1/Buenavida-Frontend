@@ -1,4 +1,6 @@
-import Modal from "./ModalProduct.js";
+import ModalCart from "./ModalCart.js";
+import ModalProduct from "./ModalProduct.js";
+import User from "./User.js";
 
 class Product{
 
@@ -27,15 +29,64 @@ class Product{
     }
 
     addListener(){
-        let a = this;
-        document.getElementById(`product-${this.id}`).addEventListener('click', function(){
-            Modal.changeVisibilty();
-            Modal.changeInfo(a.getProductInfo());
+        document.getElementById(`product-${this.id}`).addEventListener('click', (e)=>{
+            var node = e.target;
+            while(node !== this){
+                if(node===null){
+                    ModalProduct.changeVisibilty();
+                    ModalProduct.changeInfo(this.getProductInfo());
+                    return;
+                };
+                if(node.id && node.id.startsWith('product-btn-add-cart-')){
+                    User.addCart(this.getProductInfo(), 1);
+                    ModalCart.render();
+                    alert(`(1) '${this.title}' Añadido al carrito`);
+                    return;
+                }
+                node = node.parentNode;
+            }
+        });
+
+        // PRODUCTO ELEVADO
+        const product = document.getElementById(`product-${this.id}`);
+        var isOver = false;
+        product.addEventListener('mouseover', (e)=>{
+            if(isOver) return;
+            product.style.height = '420px';
+            product.style.zIndex = '10';
+            product.innerHTML = product.innerHTML + this.renderProductButton();
+            //addProcutClick();
+            /*
+            document.getElementById(`product-btn-add-cart-${this.id}`).addEventListener('click', ()=>{
+                console.log("aa");
+            });
+            */
+            isOver = true;
+        });
+        product.addEventListener('mouseleave', (e)=>{
+            isOver = false;
+            product.style.height = '350px';
+            product.style.zIndex = '0';
+            document.getElementById(`product-btn-add-cart-container-${this.id}`).remove();
+            //addProcutClick();
         });
     }
 
+    renderProductButton(){
+        return(
+            `<div id="product-btn-add-cart-container-${this.id}" class="product-add-cart-container">`+
+                `<button id="product-btn-add-cart-${this.id}">`+
+                    '<div>'+
+                        '<img src="./resources/images/icons/cesta-de-la-compra.png" alt="">'+
+                    '</div>'+
+                    '<strong>Añadir a la cesta</strong>'+
+                '</button>'+
+            '</div>'
+        )
+    }
+
     renderToModal(){
-        Modal.changeInfo(this.getProductInfo());
+        ModalProduct.changeInfo(this.getProductInfo());
     }
 
     renderToGrilla(){
@@ -43,7 +94,7 @@ class Product{
             `<div id="product-${this.id}" class="product">`+
             '    <div class="product-offert">'+
             '    </div>'+
-            '    <div class="product-image">'+
+            `    <div id="product-image-${this.id}" class="product-image">`+
             `        <img src="./resources/images/products/${this.id}.jpg" alt="">`+
             '    </div>'+
             '    <div class="product-name">'+

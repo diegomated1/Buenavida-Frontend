@@ -1,5 +1,5 @@
 import User from "./User.js";
-
+import modalCart from "./ModalCart.js";
 class ModalProduct{
 
     constructor(){
@@ -21,6 +21,7 @@ class ModalProduct{
         this.inputAmount = document.getElementById("info-amount-input");
         this.moreBtn = document.getElementById("info-amount-buttons-more");
         this.lessBtn = document.getElementById("info-amount-buttons-less");
+        this.addCartBtn = document.getElementById("modal-product-btn-add-cart");
 
         this.favoriteBtn = document.getElementById("modal-favorite-btn");
         this.favoriteBtnIcon = document.getElementById("modal-favorite-img");
@@ -29,28 +30,30 @@ class ModalProduct{
     }
 
     addListener(){
-        let a = this;
-        this.modalClose.addEventListener('click', function(){
-            a.changeVisibilty();
+        this.modalClose.addEventListener('click', ()=>{
+            this.changeVisibilty();
         });
-        this.moreBtn.addEventListener('click', function(){
-            a.inputAmount.innerHTML = parseInt(a.inputAmount.innerHTML) + 1;
-            User.addCart(a.product, parseInt(a.inputAmount.innerHTML));
+        this.moreBtn.addEventListener('click', ()=>{
+            this.inputAmount.innerHTML = parseInt(this.inputAmount.innerHTML) + 1;
         });
-        this.lessBtn.addEventListener('click', function(){
-            if(a.inputAmount.innerHTML==0) return;
-            a.inputAmount.innerHTML = parseInt(a.inputAmount.innerHTML) - 1;
-            User.delCart(a.modalId, parseInt(a.inputAmount.innerHTML));
+        this.lessBtn.addEventListener('click', ()=>{
+            if(this.inputAmount.innerHTML==0) return;
+            this.inputAmount.innerHTML = parseInt(this.inputAmount.innerHTML) - 1;
         });
-        this.favoriteBtn.addEventListener('click', function(){
-            if(a.modalISFavorite){
-                User.removeFavorite(a.modalId);
-                a.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
+        this.addCartBtn.addEventListener('click', ()=>{
+            User.addCart(this.product, parseInt(this.inputAmount.innerHTML));
+            modalCart.render();
+            alert(`(${this.inputAmount.innerHTML}) '${this.product.title}' Añadidos al carrito`);
+        });
+        this.favoriteBtn.addEventListener('click', ()=>{
+            if(this.modalISFavorite){
+                User.removeFavorite(this.modalId);
+                this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
             }else{
-                User.addFavorite(a.product);
-                a.favoriteBtnIcon.src = "./resources/images/icons/heart.png";
+                User.addFavorite(this.product);
+                this.favoriteBtnIcon.src = "./resources/images/icons/heart.png";
             }
-            a.modalISFavorite = !a.modalISFavorite;
+            this.modalISFavorite = !this.modalISFavorite;
         });
     }
 
@@ -58,6 +61,7 @@ class ModalProduct{
         if(this.visibility){
             this.visibility = false;
             this.modal.style.visibility = 'hidden';
+            this.inputAmount.innerHTML = "1";
         }else{
             this.visibility = true;
             this.modal.style.visibility = 'visible';

@@ -40,12 +40,15 @@ class ModalCart{
     }
 
     render(){
+        //console.time("render_cart");
         this.productList.innerHTML = "";
+        this.modalSubTotal = 0;
+        this.modalTotal = 0;
         let _ModalCardProducts = [];
         Object.values(User.cart).forEach(item=>{
             let _product = new ModalCartProduct(item.amount, item.product);
-            this.modalSubTotal += _product.product.price;
-            this.modalTotal += _product.product.price;
+            this.modalSubTotal += _product.totalPrice;
+            this.modalTotal += _product.totalPrice;
             this.productList.innerHTML += _product.render();
             _ModalCardProducts.push(_product);
         });
@@ -56,6 +59,7 @@ class ModalCart{
         this.modalSubTotalText.innerHTML = this.modalSubTotal + ' $';
         this.modalTotalText.innerHTML = this.modalTotal + ' $';
         this.modalLeftText.innerHTML = `Te faltan ${(45-this.modalTotal>0)?(45-this.modalLeft):'0'}$ para disfrutar del envio gratuito`;
+        //console.timeEnd("render_cart");
     }
 
 }
@@ -77,16 +81,17 @@ class ModalCartProduct{
 
     addListener(){
         document.getElementById(`cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
-            this.changeAmount(User.addCart(this.product, 1));
+            User.addCart(this.product, 1)
+            modalCart.render();
         });
         document.getElementById(`cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
             if(this.amount==1) return;
-            this.changeAmount(User.delCart(this.product.id, 1));
+            User.delCart(this.product.id, 1)
+            modalCart.render();
         });
         document.getElementById(`cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
             User.removeProductCart(this.product.id);
-            document.getElementById(`modal-cart-hr-${this.product.id}`).remove();
-            document.getElementById(`modal-cart-product-${this.product.id}`).remove();
+            modalCart.render();
         });
     }
 

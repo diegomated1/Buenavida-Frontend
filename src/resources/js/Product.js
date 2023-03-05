@@ -55,12 +55,6 @@ class Product{
             product.style.height = '420px';
             product.style.zIndex = '10';
             product.innerHTML = product.innerHTML + this.renderProductButton();
-            //addProcutClick();
-            /*
-            document.getElementById(`product-btn-add-cart-${this.id}`).addEventListener('click', ()=>{
-                console.log("aa");
-            });
-            */
             isOver = true;
         });
         product.addEventListener('mouseleave', (e)=>{
@@ -68,7 +62,6 @@ class Product{
             product.style.height = '350px';
             product.style.zIndex = '0';
             document.getElementById(`product-btn-add-cart-container-${this.id}`).remove();
-            //addProcutClick();
         });
     }
 

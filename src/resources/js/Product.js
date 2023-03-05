@@ -1,4 +1,4 @@
-import Modal from "./Modal.js";
+import Modal from "./ModalProduct.js";
 
 class Product{
 

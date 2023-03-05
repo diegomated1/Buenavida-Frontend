@@ -179,7 +179,7 @@
     <div id="modal-cart">
         <div id="modal-cart-top">
             <div id="modal-cart-top-title">
-                <h4>MI CARRITO (3)</h4>
+                <h4 id="modal-cart-title-and-length">MI CARRITO (3)</h4>
             </div>
             <div id="modal-cart-top-close-container">
                 <div id="modal-cart-close">
@@ -189,49 +189,7 @@
         </div>
         <hr class="cart-product-hr">
         <div id="modal-cart-products">
-            <div class="modal-cart-product">
-                <div class="modal-cart-product-image">
-                    <img src="./resources/images/products/1.jpg" alt="">
-                </div>
-                <div class="modal-cart-product-info">
-                    <div class="modal-cart-product-info-top">
-                        <div class="modal-cart-product-info-top-left">
-                            <span class="modal-cart-product-info-title">
-                                ACEITE CORPORAL DE ALMENDRAS DULCES
-                            </span>
-                            <span class="modal-cart-product-info-amount">
-                                500ML
-                            </span>
-                        </div>
-                        <div class="modal-cart-product-info-top-right">
-                            <div class="modal-cart-product-info-remove">
-                                <img src="./resources/images/icons/close_gray.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-cart-product-info-bottom">
-                        <div class="cart-product-cantidad">
-                            <span>Cantidad:</span>
-                        </div>
-                        <div class="cart-product-amount">
-                            <div class="cart-product-amount-input">
-                                1
-                            </div>
-                            <div class="cart-product-amount-buttons">
-                                <div class="cart-product-amount-btn">
-                                    +
-                                </div>
-                                <div class="cart-product-amount-btn">
-                                    -
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-product-price">
-                            <span>12,45 $</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <hr class="cart-product-hr">
         <div id="modal-cart-subtotal">
@@ -239,7 +197,7 @@
                 <span>Subtotal</span>
             </div>
             <div id="modal-cart-subtotal-number">
-                <span>38,40 $</span>
+                <span id="modal-cart-subtotal-number-text">38,40 $</span>
             </div>
         </div>
         <hr class="cart-product-hr">
@@ -248,21 +206,22 @@
                 <strong>Total (IVA incluido)</strong>
             </div>
             <div id="modal-cart-total-number">
-                <strong>38,40 $</strong>
+                <strong id="modal-cart-total-number-text">38,40 $</strong>
             </div>
         </div>
         <hr class="cart-product-hr">
         <span id="modal-cart-products-free-ship">Te faltan 6,60$ para disfrutar del envio gratuito</span>
         <div id="modal-cart-buttons">
-            <div id="modal-cart-btn">
-                <button>Ir al carrito</button>
+            <div class="modal-cart-btn">
+                <button id="modal-btn-go-cart">Ir al carrito</button>
             </div>
-            <div id="modal-cart-btn">
-                <button>Realizar pedido</button>
+            <div class="modal-cart-btn">
+                <button id="modal-btn-pay">Realizar pedido</button>
             </div>
         </div>
     </div>
     <script src="./resources/data/products.js" type="module" ></script>
+    <script src="./resources/js/ModalCart.js" type="module"></script>
     <script src="./resources/js/ModalProduct.js" type="module"></script>
     <script src="./resources/js/similarity.js" type="module"></script>
     <script src="./resources/js/Pages.js" type="module"></script>

@@ -16,7 +16,7 @@
 <body id="app">
     <div class="container">
         <div class="navbar">
-            <div class="navbar-logo">
+            <div id="navbar-btn-home" class="navbar-logo">
                 <img src="./resources/images/logo.jpg" alt="">
             </div>
             <div class="navbar-search-bar">
@@ -33,7 +33,7 @@
             </div>
             <div class="navbar-buttons">
                 <div class="navbar-btn">
-                    <button class="btn">
+                    <button id="navbar-btn-fav" class="btn">
                         <div class="navbar-btn-icon">
                             <img src="./resources/images/icons/heart.png" alt="">
                         </div>
@@ -43,7 +43,7 @@
                     </button>
                 </div>
                 <div class="navbar-btn">
-                    <button class="btn">
+                    <button id="navbar-btn-account" class="btn">
                         <div class="navbar-btn-icon">
                             <img src="./resources/images/icons/user.png" alt="">
                         </div>
@@ -53,7 +53,7 @@
                     </button>
                 </div>
                 <div class="navbar-btn">
-                    <button class="btn">
+                    <button id="navbar-btn-cart" class="btn">
                         <div class="navbar-btn-icon">
                             <img src="./resources/images/icons/cesta-de-la-compra.png" alt="">
                         </div>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div id="modal-product-info-button">
-                    <button>
+                    <button id="modal-product-btn-add-cart">
                         <div>
                             <img src="./resources/images/icons/cesta-de-la-compra.png" alt="">
                         </div>
@@ -220,6 +220,7 @@
             </div>
         </div>
     </div>
+    <script src="./resources/js/NavBar.js" type="module" ></script>
     <script src="./resources/data/products.js" type="module" ></script>
     <script src="./resources/js/ModalCart.js" type="module"></script>
     <script src="./resources/js/ModalProduct.js" type="module"></script>

@@ -67,7 +67,7 @@ class ModalProduct{
     changeInfo(product){
         this.product = product;
         this.modalTitle.innerHTML = product.title;
-        this.modalImage.innerHTML = product.id;
+        this.modalImage.src = `./resources/images/products/${product.id}.jpg`;
         this.modalId = product.id;
         this.modalAmount.innerHTML = product.amount;
         this.modalPrice.innerHTML = product.price;

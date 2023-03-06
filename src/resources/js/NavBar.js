@@ -26,7 +26,7 @@ class NavBar {
             modalCart.changeVisibilty();
         });
         this.btnHome.addEventListener('click', (e)=>{
-            console.log("home");
+            window.location.href = "home.html";
         });
     }
 

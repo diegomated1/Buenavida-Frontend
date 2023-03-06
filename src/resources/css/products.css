@@ -7,7 +7,8 @@
     display: grid;  
     grid-template-columns: repeat(4, 250px);
     grid-template-rows: repeat(3, 350px);
-    row-gap: 10px;
+    column-gap: 10px;
+    row-gap: 20px;
     justify-content: space-evenly;
 }
 
@@ -72,21 +73,24 @@
     z-index: 0;
     border-radius: 5px;
     cursor: pointer;
+    border-top: 1px solid gainsboro;
 }
 
 .product:hover {
-    box-shadow: 1px 1px 10px #b3b3b3;
+    box-shadow: 0px 5px 20px #b3b3b3;
 }
 
 .product-offert {
-    position: absolute;
-    width: 50px;
+    margin-top: 5px;
+    width: 100%;
     height: 50px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .product-image {
     width: 100%;
-    height: 210px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +98,7 @@
 
 .product-name {
     width: 100%;
-    height: 52.5px;
+    height: 40px;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -103,7 +107,7 @@
 
 .product-description {
     width: 100%;
-    height: 52.5px;
+    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,16 +115,24 @@
     font-size: 13px;
 }
 .product-desc-cant{
-    color: #3e3e3e;
+    margin-top: 20px;
+    color: #8a8a8a;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    background-color: white;
 }
 .product-desc{
+    background-color: white;
     color: #9b9b9b;
 }
 
 .product-price {
+    background-color: white;
     width: 100%;
-    height: 35px;
+    height: 30px;
     display: flex;
+    font-size: 20px;
     justify-content: center;
     align-items: center;
     color: var(--green-1);
@@ -135,6 +147,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
 }
 
 .product-add-cart-container > button{
@@ -159,3 +172,37 @@
     background-color: transparent;
     margin-right: 5px;
 }
+
+
+.product-is-offert{
+    width: 50px;
+    height: 50px;
+    margin-left: 15px;
+}
+
+.product-fav{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-offert-icon{
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: var(--red-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: white;
+}
+
+.product-fav-icon{
+    width: 25px;
+    height: 25px;
+}
+

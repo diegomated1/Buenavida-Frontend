@@ -4,7 +4,7 @@ var Cart = null;
 import("./Cart.js")
   .then((cart) => {
     Cart = cart.default;
-  });
+  }).catch(()=>{});
 
 class ModalCart{
 

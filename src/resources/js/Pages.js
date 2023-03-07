@@ -58,6 +58,38 @@ class Pages{
         this.pages = pages;
     }
 
+    searchEngine(inputText){
+        console.time("search_engine");
+        this.filteredProducts = [];
+        const similitud = (text1 = 'abc', text2 = 'abc')=>{
+            text1 = text1.toLowerCase();
+            text2 = text2.toLowerCase();
+            let i = 0, j = 0;
+            for(i,j;i<text1.length&&j<text2.length;i++){
+                if(text1[i]==text2[j]) j++;
+            }
+            return (j<text2.length) ? false : true;
+        }
+        const textWords = inputText.split(' ');
+        products.forEach(product=>{
+            let productName = product.title;
+            let words = productName.split(' ');
+            let i = 0, j = 0;
+            for(i,j;i<words.length&&j<textWords.length;i++){
+                if(similitud(words[i], textWords[j])) j++;
+            }
+            if(j>=textWords.length){
+                this.filteredProducts.push(product);
+            }
+        });
+        this.currentPage = 0;
+        this.makePages();
+        this.render();
+        this.Paginator.render();
+        console.log(this.filteredProducts.length);
+        console.timeEnd("search_engine");
+    }
+
     render(){
         this.productsGrilla.innerHTML = '';
         this.grillaContainer.scrollTop = 0;

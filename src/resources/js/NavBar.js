@@ -1,11 +1,8 @@
 
 import modalAccount from "./modals/ModalAccount.js";
 import modalCart from "./modals/ModalCart.js";
-var modalProduct = null;
-import("./modals/ModalProduct.js")
-  .then((product) => {
-    modalProduct = product.default;
-  }).catch(()=>{});
+import productPages from "./Pages.js";
+
 class NavBar {
 
     constructor(){
@@ -14,12 +11,16 @@ class NavBar {
         this.btnAccount = document.getElementById("navbar-btn-account");
         this.btnCart = document.getElementById("navbar-btn-cart");
         this.btnHome = document.getElementById("navbar-btn-home");
+
+        this.searchInputForm = document.getElementById("search-form"); 
+
         this.addListener();
     }
 
     addListener(){
-        this.searchInput.addEventListener('click', (e)=>{
-            console.log("input");
+        this.searchInputForm.addEventListener('submit', (e)=>{
+            e.preventDefault();
+            productPages.searchEngine(this.searchInput.value);
         });
         this.btnFavorites.addEventListener('click', (e)=>{
             console.log("favorites");

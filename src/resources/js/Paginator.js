@@ -16,7 +16,7 @@ class Paginator{
         this.paginator.innerHTML = '';
         this.paginatorsBtn = [];
         if(this.productPages.pages.length<=5){
-            for(let i=0;i<this.pages.length;i++){
+            for(let i=0;i<this.productPages.pages.length;i++){
                 let _paginator = new PaginatorBtn(this, i, 2, i+1);
                 this.paginatorsBtn.push(_paginator);
                 this.paginator.innerHTML = _paginator.render() + this.paginator.innerHTML;

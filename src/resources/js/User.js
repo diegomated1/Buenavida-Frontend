@@ -9,7 +9,9 @@ class User{
         this.user = {};
         this.loadData();
     }
-
+    /**
+     * Verify is user is logged and load all info (cart, favorites and user info)
+     */
     loadData(){
         const userInfo = localStorage.getItem('user');
         if(userInfo){
@@ -43,6 +45,9 @@ class User{
         }
     }
 
+    /**
+     * Get user cart if not logged return empty object
+     */
     getCart(){
         if(this.isLogged){
             return this.cart[this.user.email];
@@ -50,7 +55,10 @@ class User{
             return {};
         }
     }
-
+    
+    /**
+     * Get user favorites products if not logged return empty object
+     */
     getFavorites(){
         if(this.isLogged){
             return this.favorites[this.user.email];
@@ -59,6 +67,12 @@ class User{
         }
     }
 
+    /**
+     * Add products to cart
+     * @param {*} product product to add cart
+     * @param {*} amount amount of the product to add
+     * @param {*} cb callback for execute if user is logged
+     */
     addCart(product, amount, cb){
         if(this.isLogged){
             if(this.cart[this.user.email][product.id]){
@@ -73,6 +87,12 @@ class User{
         }
     }
 
+    /**
+     * Remove products from cart
+     * @param {*} id id of the product to remove
+     * @param {*} amount amount of the product to remove
+     * @param {*} cb callback for execute if user is logged
+     */
     delCart(id, amount, cb){
         if(this.isLogged){
             if(this.cart[this.user.email][id].amount == 1){
@@ -87,6 +107,11 @@ class User{
         }
     }
 
+    /**
+     * remove all product from cart
+     * @param {*} id id of the product to remove
+     * @param {*} cb callback for execute if user is logged
+     */
     removeProductCart(id, cb){
         if(this.isLogged){
             delete this.cart[this.user.email][id];
@@ -97,6 +122,11 @@ class User{
         }
     }
 
+    /**
+     * add product to favorites
+     * @param {*} product product to add to favorites
+     * @param {*} cb callback for execute if user is logged
+     */
     addFavorite(product, cb){
         if(this.isLogged){
             this.favorites[this.user.email][product.id] = product;
@@ -107,7 +137,12 @@ class User{
         }
     }
 
-    removeFavorite(id){
+    /**
+     * remove product from favorites
+     * @param {*} id id of the product to remove from favorites
+     * @param {*} cb callback for execute if user is logged
+     */
+    removeFavorite(id, cb){
         if(this.isLogged){
             delete this.favorites[this.user.email][id];
             localStorage.setItem('favorites', JSON.stringify(this.favorites));
@@ -117,6 +152,12 @@ class User{
         }
     }
 
+    /**
+     * login
+     * @param {*} email email of the user
+     * @param {*} password passwor of the user
+     * @returns return status and message if not logged
+     */
     login(email, password){
         var users = JSON.parse(localStorage.getItem('users'));
         if(!users || users[email]===undefined){
@@ -138,6 +179,14 @@ class User{
         }
     }
 
+    /**
+     * register
+     * @param {*} firstName first name of the user
+     * @param {*} lastName last name of the user
+     * @param {*} email email of the user
+     * @param {*} password password of the user
+     * @returns return status and message if not logged 
+     */
     register(firstName, lastName, email, password){
         var users = JSON.parse(localStorage.getItem('users'));
         if(users && users[email]!==undefined){
@@ -151,6 +200,8 @@ class User{
             }
             users[email] = {firstName, lastName, password};
             localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('user', JSON.stringify({...users[email], email}));
+            this.loadData();
             return{
                 status: true
             }

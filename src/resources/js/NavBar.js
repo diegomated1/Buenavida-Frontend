@@ -1,6 +1,11 @@
 
-import modalCart from "./ModalCart.js";
-
+import modalAccount from "./modals/ModalAccount.js";
+import modalCart from "./modals/ModalCart.js";
+var modalProduct = null;
+import("./modals/ModalProduct.js")
+  .then((product) => {
+    modalProduct = product.default;
+  }).catch(()=>{});
 class NavBar {
 
     constructor(){
@@ -20,10 +25,12 @@ class NavBar {
             console.log("favorites");
         });
         this.btnAccount.addEventListener('click', (e)=>{
-            console.log("account");
+            modalAccount.changeVisibilty();
+            modalCart.changeVisibilty(false);
         });
         this.btnCart.addEventListener('click', (e)=>{
             modalCart.changeVisibilty();
+            modalAccount.changeVisibilty(false);
         });
         this.btnHome.addEventListener('click', (e)=>{
             window.location.href = "home.html";

@@ -38,10 +38,10 @@ class ModalAccount{
             console.log('Mi Cart');
         });
         this.btnLogin.addEventListener('click', (e)=>{
-            console.log('Entrear');
+            window.location.href = 'login.html';
         });
         this.btnRegister.addEventListener('click', (e)=>{
-            console.log('cera cuneta');
+            window.location.href = 'register.html';
         });
     }
 

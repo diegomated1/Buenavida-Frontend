@@ -5,7 +5,8 @@ import User from "./User.js";
 
 class Product{
 
-    constructor(product){
+    constructor(product, uniqid){
+        this.uniqid = uniqid;
         this.id = product.id;
         this.title = product.title;
         this.amount = product.amount;
@@ -32,7 +33,7 @@ class Product{
     }
 
     addListener(){
-        document.getElementById(`product-${this.id}`).addEventListener('click', (e)=>{
+        document.getElementById(`product-${this.uniqid}`).addEventListener('click', (e)=>{
             var node = e.target;
             while(node !== this){
                 // TODO EL PRODUCTO
@@ -62,7 +63,7 @@ class Product{
         });
 
         // PRODUCTO ELEVADO
-        const product = document.getElementById(`product-${this.id}`);
+        const product = document.getElementById(`product-${this.uniqid}`);
         var isOver = false;
         product.addEventListener('mouseover', (e)=>{
             if(isOver) return;
@@ -77,12 +78,12 @@ class Product{
             product.style.height = '350px';
             product.style.zIndex = '0';
             this.changeFavIconVisibility();
-            document.getElementById(`product-btn-add-cart-container-${this.id}`).remove();
+            document.getElementById(`product-btn-add-cart-container-${this.uniqid}`).remove();
         });
     }
 
     changeFavorite(){
-        const favIcon = document.getElementById(`product-fav-icon-${this.id}`);
+        const favIcon = document.getElementById(`product-fav-icon-${this.uniqid}`);
         if(this.favourite){
             User.removeFavorite(this.id, ()=>{
                 favIcon.querySelector('img').src = './resources/images/icons/heart_filled.png';
@@ -97,7 +98,7 @@ class Product{
     }
 
     changeFavIconVisibility(){
-        const favIcon = document.getElementById(`product-fav-icon-${this.id}`);
+        const favIcon = document.getElementById(`product-fav-icon-${this.uniqid}`);
         if(favIcon.style.visibility == 'hidden'){
             favIcon.style.visibility = 'visible';
         }else{
@@ -107,8 +108,8 @@ class Product{
 
     renderProductAddCartBtn(){
         return(
-            `<div id="product-btn-add-cart-container-${this.id}" class="product-add-cart-container">`+
-                `<button id="product-btn-add-cart-${this.id}">`+
+            `<div id="product-btn-add-cart-container-${this.uniqid}" class="product-add-cart-container">`+
+                `<button id="product-btn-add-cart-${this.uniqid}">`+
                     '<div>'+
                         '<img src="./resources/images/icons/cesta-de-la-compra-blanca.png" alt="">'+
                     '</div>'+
@@ -120,7 +121,7 @@ class Product{
 
     render(){
         return(
-            `<div id="product-${this.id}" class="product">`+
+            `<div id="product-${this.uniqid}" class="product">`+
                 '<div class="product-offert">'+
                     '<div class="product-is-offert">'+
                     `${(this.discount) ? (
@@ -131,7 +132,7 @@ class Product{
                     ):''}`+
                     '</div>'+
                     '<div class="product-fav">'+
-                        `<div style="visibility: hidden;" id="product-fav-icon-${this.id}" class="product-fav-icon">`+
+                        `<div style="visibility: hidden;" id="product-fav-icon-${this.uniqid}" class="product-fav-icon">`+
                             `<img src="./resources/images/icons/${this.favourite?'heart_filled_red':'heart_filled'}.png">`+
                         '</div>'+
                     '</div>'+

@@ -94,8 +94,8 @@ class Pages{
         this.productsGrilla.innerHTML = '';
         this.grillaContainer.scrollTop = 0;
         let _products = [];
-        this.pages[this.currentPage].forEach((item)=>{
-            let _product = new Product(item);
+        this.pages[this.currentPage].forEach((item, i)=>{
+            let _product = new Product(item, i);
             this.productsGrilla.innerHTML += _product.render();
             _products.push(_product);
         });

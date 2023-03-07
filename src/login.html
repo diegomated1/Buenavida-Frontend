@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script async src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+    <link rel="stylesheet" href="./resources/css/index.css">
+    <link rel="stylesheet" href="./resources/css/navbar.css">
+    <link rel="stylesheet" href="./resources/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div id="navbar-btn-home" class="navbar-logo">
+                <img src="./resources/images/logo.jpg" alt="">
+            </div>
+            <div class="navbar-search-bar">
+                <form id="search-form" method="get" class="navbar-sb" action="#">
+                    <div class="navbar-sb-input-container">
+                        <input id="search-input" class="navbar-sb-input" type="text" placeholder="¿Qué producto estás buscando...?">
+                    </div>
+                    <div class="navbar-sb-btn">
+                        <button type="submit" class="btn">
+                            <img src="./resources/images/icons/lupa.png" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="navbar-buttons">
+                <div class="navbar-btn">
+                    <button id="navbar-btn-fav" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/heart.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mis Favoritos</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button id="navbar-btn-account" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/user.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mi Cuenta</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button id="navbar-btn-cart" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/cesta-de-la-compra.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mi Carrito</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="login-container">
+            <div id="login">
+                <div class="login-input-container">
+                    <input id="login-input-email" class="login-input" type="text" placeholder="Email">
+                </div>
+                <div class="login-input-container">
+                    <input id="login-input-password" class="login-input" type="text" placeholder="Contraseña">
+                </div>
+                <div id="login-forgot-password-container">
+                    <a href="">¿Has olvidado tu contraseña?</a>
+                </div>
+                <div id="login-recaptcha-container">
+                    <span id="msg-error error"></span>
+                    <div id="recaptcha" class="g-recaptcha" data-sitekey="Clave del sitio"></div>
+                </div>
+                <div id="login-buttons-container">
+                    <div class="login-btn-login-container">
+                        <button id="login-btn-login" class="login-btn">
+                            <span><strong>Accede</strong></span>
+                        </button>
+                    </div>
+                    <div class="login-btn-login-container">
+                        <button id="login-btn-login-facebook" class="login-btn">
+                            <span><strong>Accede con facebook</strong></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./resources/css/index.css">
     <link rel="stylesheet" href="./resources/css/navbar.css">
     <link rel="stylesheet" href="./resources/css/register.css">
+    <link rel="stylesheet" href="./resources/css/modalAccount.css">
+    <link rel="stylesheet" href="./resources/css/modalCart.css">
 </head>
 <body>
     <div class="container">
@@ -62,30 +64,30 @@
             </div>
         </div>
         <div id="register-container">
-            <div id="register">
+            <form id="register">
                 <div class="register-info-container">
                     <span><strong>Crear una nueva cuenta</strong></span>
                 </div>
                 <div class="register-input-container">
-                    <input id="register-input-name" class="register-input" type="text" placeholder="Nombre">
+                    <input required id="register-input-name" class="register-input" type="text" placeholder="Nombre">
                 </div>
                 <div class="register-input-container">
-                    <input id="register-input-last-name" class="register-input" type="text" placeholder="Apellidos">
+                    <input required id="register-input-last-name" class="register-input" type="text" placeholder="Apellidos">
                 </div>
                 <div class="register-info-container">
                     <span><strong>Informacion de inicio de sesion</strong></span>
                 </div>
                 <div class="register-input-container">
-                    <input id="register-input-email" class="register-input" type="text" placeholder="Email">
+                    <input required id="register-input-email" class="register-input" type="email" placeholder="Email">
                 </div>
                 <div class="register-input-container">
-                    <input id="register-input-password" class="register-input" type="text" placeholder="Contraseña">
+                    <input required id="register-input-password" class="register-input" type="password" placeholder="Contraseña">
                 </div>
                 <div class="register-input-container">
-                    <input id="register-input-confirm-password" class="register-input" type="text" placeholder="Repetir contraseña">
+                    <input required id="register-input-confirm-password" class="register-input" type="password" placeholder="Repetir contraseña">
                 </div>
                 <div id="register-password-info-container">
-                    <span>La contraseña debe debe contener al menos una mayuscula y un numero</span>
+                    <span id="register-password-info">La contraseña debe debe contener al menos una mayuscula y un numero</span>
                 </div>
                 <div id="register-recaptcha-container">
                     <span id="msg-error error"></span>
@@ -93,7 +95,7 @@
                 </div>
                 <div id="register-buttons-container">
                     <div class="register-btn-register-container">
-                        <button id="register-btn-register" class="register-btn">
+                        <button type="submit" id="register-btn-register" class="register-btn">
                             <span><strong>Crear cuenta</strong></span>
                         </button>
                     </div>
@@ -103,8 +105,119 @@
                         </button>
                     </div>
                 </div>
+            </form>
+        </div>
+    </div>
+    <div id="modal-cart">
+        <div id="modal-cart-top">
+            <div id="modal-cart-top-title">
+                <h4 id="modal-cart-title-and-length">MI CARRITO (3)</h4>
+            </div>
+            <div id="modal-cart-top-close-container">
+                <div id="modal-cart-close">
+                    <img src="./resources/images/icons/close_gray.png" alt="">
+                </div>
+            </div>
+        </div>
+        <hr class="cart-product-hr">
+        <div id="modal-cart-products">
+            
+        </div>
+        <hr class="cart-product-hr">
+        <div id="modal-cart-subtotal">
+            <div id="modal-cart-subtotal-text">
+                <span>Subtotal</span>
+            </div>
+            <div id="modal-cart-subtotal-number">
+                <span id="modal-cart-subtotal-number-text">38,40 $</span>
+            </div>
+        </div>
+        <hr class="cart-product-hr">
+        <div id="modal-cart-total">
+            <div id="modal-cart-total-text">
+                <strong>Total (IVA incluido)</strong>
+            </div>
+            <div id="modal-cart-total-number">
+                <strong id="modal-cart-total-number-text">38,40 $</strong>
+            </div>
+        </div>
+        <hr class="cart-product-hr">
+        <span id="modal-cart-products-free-ship">Te faltan 6,60$ para disfrutar del envio gratuito</span>
+        <div id="modal-cart-buttons">
+            <div class="modal-cart-btn">
+                <button id="modal-btn-go-cart">Ir al carrito</button>
+            </div>
+            <div class="modal-cart-btn">
+                <button id="modal-btn-pay">Realizar pedido</button>
             </div>
         </div>
     </div>
+    <div id="modal-user-account">
+        <div class="mua-btn-container">
+            <button id="mua-btn-account" class="mua-btn">
+                <div class="mua-btn-icon-container">
+                    <div class="mua-btn-icon">
+                        <img src="./resources/images/icons/user_filled.png" alt="">
+                    </div>
+                </div>
+                <div class="mua-btn-text">
+                    <span>Mi Cuenta</span>
+                </div>
+            </button>
+        </div>
+        <div class="mua-btn-container">
+            <button id="mua-btn-fav" class="mua-btn">
+                <div class="mua-btn-icon-container">
+                    <div class="mua-btn-icon">
+                        <img src="./resources/images/icons/heart_black.png" alt="">
+                    </div>
+                </div>
+                <div class="mua-btn-text">
+                    <span>Mi Favoritos</span>
+                </div>
+            </button>
+        </div>
+        <div class="mua-btn-container">
+            <button id="mua-btn-cart" class="mua-btn">
+                <div class="mua-btn-icon-container">
+                    <div class="mua-btn-icon">
+                        <img src="./resources/images/icons/check.png" alt="">
+                    </div>
+                </div>
+                <div class="mua-btn-text">
+                    <span>Mi Carrito</span>
+                </div>
+            </button>
+        </div>
+        <div class="mua-btn-container">
+            <button id="mua-btn-login" class="mua-btn">
+                <div class="mua-btn-icon-container">
+                    <div class="mua-btn-icon">
+                        <img src="./resources/images/icons/padlock.png" alt="">
+                    </div>
+                </div>
+                <div class="mua-btn-text">
+                    <span>Entrar</span>
+                </div>
+            </button>
+        </div>
+        <div class="mua-btn-container">
+            <button id="mua-btn-register" class="mua-btn">
+                <div class="mua-btn-icon-container">
+                    <div class="mua-btn-icon">
+                        <img src="./resources/images/icons/invite.png" alt="">
+                    </div>
+                </div>
+                <div class="mua-btn-text">
+                    <span>Crear una cuenta</span>
+                </div>
+            </button>
+        </div>
+    </div>
+    <script src="./resources/js/auth/Register.js" type="module"></script>
+    <script src="./resources/js/NavBar.js" type="module" ></script>
+    <script src="./resources/js/modals/ModalAccount.js" type="module"></script>
+    <script src="./resources/js/modals/ModalCart.js" type="module"></script>
+    <script src="./resources/js/User.js" type="module"></script>
 </body>
 </html>

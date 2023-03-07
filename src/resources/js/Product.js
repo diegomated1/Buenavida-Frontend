@@ -11,7 +11,7 @@ class Product{
         this.amount = product.amount;
         this.price = product.price;
         this.description = product.description;
-        this.favourite = (User.favorites[this.id])?true:false;
+        this.favourite = (User.getFavorites()[this.id])?true:false;
         this.discount = product.discount;
         this.discountUni = product.discountUni;
         this.discountPer = product.discountPer;
@@ -45,9 +45,10 @@ class Product{
                 }else if(node.id){
                     // BOTON DE AGREGAR AL CARRITO
                     if(node.id.startsWith('product-btn-add-cart-')){
-                        User.addCart(this.getProductInfo(), 1);
-                        ModalCart.render();
-                        alert(`(1) '${this.title}' Añadido al carrito`);
+                        User.addCart(this.getProductInfo(), 1, ()=>{
+                            ModalCart.render();
+                            alert(`(1) '${this.title}' Añadido al carrito`);
+                        });
                         return;
                     }else 
                     // BOTON DE AGREGAR A FAVORITOS
@@ -83,13 +84,15 @@ class Product{
     changeFavorite(){
         const favIcon = document.getElementById(`product-fav-icon-${this.id}`);
         if(this.favourite){
-            favIcon.querySelector('img').src = './resources/images/icons/heart_filled.png';
-            this.favourite = false;
-            User.removeFavorite(this.id);
+            User.removeFavorite(this.id, ()=>{
+                favIcon.querySelector('img').src = './resources/images/icons/heart_filled.png';
+                this.favourite = false;
+            });
         }else{
-            favIcon.querySelector('img').src = './resources/images/icons/heart_filled_red.png';
-            this.favourite = true;
-            User.addFavorite(this.getProductInfo());
+            User.addFavorite(this.getProductInfo(), ()=>{
+                favIcon.querySelector('img').src = './resources/images/icons/heart_filled_red.png';
+                this.favourite = true;
+            });
         }
     }
 

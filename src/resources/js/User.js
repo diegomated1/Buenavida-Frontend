@@ -36,10 +36,26 @@ class User{
             if(!_cart[this.user.email]){
                 _cart[this.user.email] = {};
             }
-            this._cart = _cart;
+            this.cart = _cart;
             localStorage.setItem('cart', JSON.stringify(_cart));
         }else{
             localStorage.setItem('cart',`{"${this.user.email}":{}}`);
+        }
+    }
+
+    getCart(){
+        if(this.isLogged){
+            return this.cart[this.user.email];
+        }else{
+            return {};
+        }
+    }
+
+    getFavorites(){
+        if(this.isLogged){
+            return this.favorites[this.user.email];
+        }else{
+            return {};
         }
     }
 

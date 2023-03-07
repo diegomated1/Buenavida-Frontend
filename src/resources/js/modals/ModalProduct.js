@@ -40,9 +40,10 @@ class ModalProduct{
             this.inputAmount.innerHTML = parseInt(this.inputAmount.innerHTML) - 1;
         });
         this.addCartBtn.addEventListener('click', ()=>{
-            User.addCart(this.product, parseInt(this.inputAmount.innerHTML));
-            modalCart.render();
-            alert(`(${this.inputAmount.innerHTML}) '${this.product.title}' Añadidos al carrito`);
+            User.addCart(this.product, parseInt(this.inputAmount.innerHTML), ()=>{
+                modalCart.render();
+                alert(`(${this.inputAmount.innerHTML}) '${this.product.title}' Añadidos al carrito`);
+            });
         });
         this.favoriteBtn.addEventListener('click', ()=>{
             console.log(this.modalISFavorite);

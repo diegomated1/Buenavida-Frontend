@@ -56,7 +56,7 @@ class ModalCart{
         this.modalSubTotal = 0;
         this.modalTotal = 0;
         let _ModalCardProducts = [];
-        Object.values(User.cart).forEach(item=>{
+        Object.values(User.getCart()).forEach(item=>{
             let _product = new ModalCartProduct(item.amount, item.product);
             this.modalSubTotal += _product.totalPrice;
             this.modalTotal += _product.totalPrice;
@@ -92,26 +92,29 @@ class ModalCartProduct{
 
     addListener(){
         document.getElementById(`cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
-            User.addCart(this.product, 1)
-            modalCart.render();
-            if(Cart){
-                Cart.render();
-            }
+            User.addCart(this.product, 1, ()=>{
+                modalCart.render();
+                if(Cart){
+                    Cart.render();
+                }
+            });
         });
         document.getElementById(`cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
             if(this.amount==1) return;
-            User.delCart(this.product.id, 1)
-            modalCart.render();
-            if(Cart){
-                Cart.render();
-            }
+            User.delCart(this.product.id, 1, ()=>{
+                modalCart.render();
+                if(Cart){
+                    Cart.render();
+                }
+            });
         });
         document.getElementById(`cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
-            User.removeProductCart(this.product.id);
-            modalCart.render();
-            if(Cart){
-                Cart.render();
-            }
+            User.removeProductCart(this.product.id, ()=>{
+                modalCart.render();
+                if(Cart){
+                    Cart.render();
+                }
+            });
         });
     }
 

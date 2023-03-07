@@ -22,7 +22,7 @@ class Cart{
         this.subTotal = 0;
         this.total = 0;
         let _CardProducts = [];
-        Object.values(User.cart).forEach(item=>{
+        Object.values(User.getCart()).forEach(item=>{
             let _product = new CartProduct(item.amount, item.product);
             this.subTotal += _product.totalPrice;
             this.total += _product.totalPrice;
@@ -57,24 +57,27 @@ class CartProduct{
     addListener(){
         document.getElementById(`page-cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
             console.time("render_cart");
-            User.addCart(this.product, 1)
-            cart.render();
-            ModalCart.render();
+            User.addCart(this.product, 1, ()=>{
+                cart.render();
+                ModalCart.render();
+            });
             console.timeEnd("render_cart");
         });
         document.getElementById(`page-cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
             console.time("render_cart");
             if(this.amount==1) return;
-            User.delCart(this.product.id, 1)
-            cart.render();
-            ModalCart.render();
+            User.delCart(this.product.id, 1, ()=>{
+                cart.render();
+                ModalCart.render();
+            });
             console.timeEnd("render_cart");
         });
         document.getElementById(`page-cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
             console.time("render_cart");
-            User.removeProductCart(this.product.id);
-            cart.render();
-            ModalCart.render();
+            User.removeProductCart(this.product.id, ()=>{
+                cart.render();
+                ModalCart.render();
+            });
             console.timeEnd("render_cart");
         });
     }

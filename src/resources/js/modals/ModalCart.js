@@ -1,7 +1,7 @@
 
-import User from './User.js';
+import User from '../User.js';
 var Cart = null;
-import("./Cart.js")
+import("../Cart.js")
   .then((cart) => {
     Cart = cart.default;
   }).catch(()=>{});
@@ -23,19 +23,25 @@ class ModalCart{
 
         this.closeModalBtn = document.getElementById("modal-cart-close");
         this.btnGoToCart = document.getElementById("modal-btn-go-cart");
-        this.btnGoToCart = document.getElementById("modal-btn-pay");
+        this.btnGoToPay = document.getElementById("modal-btn-pay");
         this.render();
         this.addListener();
     }
 
     addListener(){
         this.closeModalBtn.addEventListener('click', (e)=>{
-                this.changeVisibilty();
+            this.changeVisibilty();
+        });
+        this.btnGoToCart.addEventListener('click', (e)=>{
+            window.location.href = "cart.html";
         });
     }
 
-    changeVisibilty(){
-        if(this.visibility){
+    changeVisibilty(visible){
+        if(visible!=undefined){
+            this.visibility = visible;
+            this.modal.style.visibility = visible ? 'visible' : 'hidden';
+        }else if(this.visibility){
             this.visibility = false;
             this.modal.style.visibility = 'hidden';
         }else{
@@ -63,7 +69,7 @@ class ModalCart{
         this.cartTitleAndLength.innerHTML = `MI CARRITO ${(_ModalCardProducts.length==0)?'':`(${_ModalCardProducts.length})`}`;
         this.modalSubTotalText.innerHTML = this.modalSubTotal + ' $';
         this.modalTotalText.innerHTML = this.modalTotal + ' $';
-        this.modalLeftText.innerHTML = `Te faltan ${(45-this.modalTotal>0)?(45-this.modalLeft):'0'}$ para disfrutar del envio gratuito`;
+        this.modalLeftText.innerHTML = `Te faltan ${(45-this.modalTotal>0)?(45-this.modalTotal):'0'}$ para disfrutar del envio gratuito`;
         //console.timeEnd("render_cart");
     }
 

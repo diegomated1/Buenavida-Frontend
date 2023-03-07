@@ -1,4 +1,4 @@
-import User from "./User.js";
+import User from "../User.js";
 import modalCart from "./ModalCart.js";
 class ModalProduct{
 
@@ -7,7 +7,6 @@ class ModalProduct{
         this.modal = document.getElementById("modal-product");
         this.modal.style.visibility = 'hidden';
         this.visibility = false;
-        this.modalClose = document.getElementById("modal-close");
 
         this.modalTitle = document.getElementById("modal-product-info-title");
         this.modalImage = document.getElementById("modal-image");
@@ -22,7 +21,7 @@ class ModalProduct{
         this.moreBtn = document.getElementById("info-amount-buttons-more");
         this.lessBtn = document.getElementById("info-amount-buttons-less");
         this.addCartBtn = document.getElementById("modal-product-btn-add-cart");
-
+        this.modalClose = document.getElementById("modal-close");
         this.favoriteBtn = document.getElementById("modal-favorite-btn");
         this.favoriteBtnIcon = document.getElementById("modal-favorite-img");
 
@@ -46,25 +45,31 @@ class ModalProduct{
             alert(`(${this.inputAmount.innerHTML}) '${this.product.title}' Añadidos al carrito`);
         });
         this.favoriteBtn.addEventListener('click', ()=>{
-            if(this.modalISFavorite){
-                User.removeFavorite(this.modalId);
-                this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
-            }else{
-                User.addFavorite(this.product);
-                this.favoriteBtnIcon.src = "./resources/images/icons/heart.png";
-            }
-            this.modalISFavorite = !this.modalISFavorite;
+            console.log(this.modalISFavorite);
+            this.changeFavorite();
         });
     }
 
-    changeVisibilty(){
-        if(this.visibility){
+    changeVisibilty(visible){
+        if(visible!=undefined){
+            this.visibility = visible;
+            this.modal.style.visibility = visible ? 'visible' : 'hidden';
+        }else if(this.visibility){
             this.visibility = false;
             this.modal.style.visibility = 'hidden';
-            this.inputAmount.innerHTML = "1";
         }else{
             this.visibility = true;
             this.modal.style.visibility = 'visible';
+        }
+    }
+
+    changeFavorite(){
+        if(this.product.favourite){
+            this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled_red.png";
+            this.product.changeFavorite();
+        }else{
+            this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
+            this.product.changeFavorite();
         }
     }
 
@@ -77,7 +82,11 @@ class ModalProduct{
         this.modalPrice.innerHTML = product.price;
         this.modalPriceUnit.innerHTML = product.price;
         this.modalDescription.innerHTML = product.description;
-        this.modalISFavorite = product.favourite;
+        if(product.favourite){
+            this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled_red.png";
+        }else{
+            this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
+        }
     }
 }
 

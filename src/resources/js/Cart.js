@@ -1,5 +1,5 @@
 import User from "./User.js";
-import ModalCart from "./ModalCart.js";
+import ModalCart from "./modals/ModalCart.js";
 
 class Cart{
 

@@ -12,6 +12,7 @@
     flex-direction: column;
     background-color: white;
     box-shadow: 1px 10px 50px #b3b3b3;
+    z-index: 30;
 }
 
 #modal-cart-top{
@@ -225,5 +226,15 @@
     border-radius: 25px;
     background-color: var(--green-1);
     color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
+.modal-cart-btn > button:hover{
+    background-color: var(--orange-1);
+    color: black;
+}
+
+#modal-btn-go-cart{
+    margin-top: 10px;
+}

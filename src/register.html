@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script async src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+    <link rel="stylesheet" href="./resources/css/index.css">
+    <link rel="stylesheet" href="./resources/css/navbar.css">
+    <link rel="stylesheet" href="./resources/css/register.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div id="navbar-btn-home" class="navbar-logo">
+                <img src="./resources/images/logo.jpg" alt="">
+            </div>
+            <div class="navbar-search-bar">
+                <form id="search-form" method="get" class="navbar-sb" action="#">
+                    <div class="navbar-sb-input-container">
+                        <input id="search-input" class="navbar-sb-input" type="text" placeholder="¿Qué producto estás buscando...?">
+                    </div>
+                    <div class="navbar-sb-btn">
+                        <button type="submit" class="btn">
+                            <img src="./resources/images/icons/lupa.png" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="navbar-buttons">
+                <div class="navbar-btn">
+                    <button id="navbar-btn-fav" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/heart.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mis Favoritos</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button id="navbar-btn-account" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/user.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mi Cuenta</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="navbar-btn">
+                    <button id="navbar-btn-cart" class="btn">
+                        <div class="navbar-btn-icon">
+                            <img src="./resources/images/icons/cesta-de-la-compra.png" alt="">
+                        </div>
+                        <div class="navbar-btn-text">
+                            <span>Mi Carrito</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="register-container">
+            <div id="register">
+                <div class="register-info-container">
+                    <span><strong>Crear una nueva cuenta</strong></span>
+                </div>
+                <div class="register-input-container">
+                    <input id="register-input-name" class="register-input" type="text" placeholder="Nombre">
+                </div>
+                <div class="register-input-container">
+                    <input id="register-input-last-name" class="register-input" type="text" placeholder="Apellidos">
+                </div>
+                <div class="register-info-container">
+                    <span><strong>Informacion de inicio de sesion</strong></span>
+                </div>
+                <div class="register-input-container">
+                    <input id="register-input-email" class="register-input" type="text" placeholder="Email">
+                </div>
+                <div class="register-input-container">
+                    <input id="register-input-password" class="register-input" type="text" placeholder="Contraseña">
+                </div>
+                <div class="register-input-container">
+                    <input id="register-input-confirm-password" class="register-input" type="text" placeholder="Repetir contraseña">
+                </div>
+                <div id="register-password-info-container">
+                    <span>La contraseña debe debe contener al menos una mayuscula y un numero</span>
+                </div>
+                <div id="register-recaptcha-container">
+                    <span id="msg-error error"></span>
+                    <div id="recaptcha" class="g-recaptcha" data-sitekey="Clave del sitio"></div>
+                </div>
+                <div id="register-buttons-container">
+                    <div class="register-btn-register-container">
+                        <button id="register-btn-register" class="register-btn">
+                            <span><strong>Crear cuenta</strong></span>
+                        </button>
+                    </div>
+                    <div class="register-btn-register-container">
+                        <button id="register-btn-register-facebook" class="register-btn">
+                            <span><strong>Accede con facebook</strong></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

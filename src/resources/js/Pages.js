@@ -4,25 +4,56 @@ import Paginator from "./Paginator.js";
 class Pages{
 
     constructor(){
+        this.allProducts = products;
         this.grillaContainer = document.getElementsByClassName("right")[0];
         this.productsGrilla = document.getElementsByClassName("products-grilla")[0];
-        this.allProducts = products;
-        this.productsById = {};
+        this.Paginator = new Paginator(this);
+
         this.filteredProducts = this.allProducts;
         this.currentPage = 0;
         this.pages = [];
 
-        this.toObject();
-        this.makePages();
-        this.render();
-        this.Paginator = new Paginator(this);
-        this.Paginator.render();
+        this.search;
+        this.priceFrom;
+        this.priceTo;
+
+        let [low, high] = this.getLowHighPrice();
+        this.lowPrice = low;
+        this.highPrice = high;
+
+        this.getParams();
+        this.searchEngine(this.search, this.priceFrom, this.priceTo);
     }
 
-    toObject(){
-        this.allProducts.map(product=>{
-            this.productsById[product.id] = product;
+    getParams(){
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        this.search = params.search || '';
+        this.priceFrom = (params.priceFrom && parseFloat(params.priceFrom)!=NaN) ? parseFloat(params.priceFrom) : this.lowPrice;
+        this.priceTo = (params.priceTo && parseFloat(params.priceTo)!=NaN) ? parseFloat(params.priceTo) : this.highPrice;
+        if(this.priceFrom<this.lowPrice){
+            this.priceFrom = this.lowPrice;
+        }
+        if(this.priceTo>this.highPrice){
+            this.priceTo = this.highPrice;
+        }
+        if(this.priceFrom>this.priceTo){
+            this.priceFrom = this.priceTo;
+        }
+    }
+
+    getLowHighPrice(){
+        let min = 1000;
+        let max = 0;
+        this.allProducts.forEach(product=>{
+            if(product.price<min){
+                min = product.price;
+            }
+            if(product.price>max){
+                max = product.price;
+            }
         });
+        return [min, max];
     }
 
     previusPage(){
@@ -58,7 +89,7 @@ class Pages{
         this.pages = pages;
     }
 
-    searchEngine(inputText){
+    searchEngine(inputText, filterFrom, filterTo){
         console.time("search_engine");
         this.filteredProducts = [];
         const similitud = (text1 = 'abc', text2 = 'abc')=>{
@@ -72,14 +103,16 @@ class Pages{
         }
         const textWords = inputText.split(' ');
         products.forEach(product=>{
-            let productName = product.title;
-            let words = productName.split(' ');
-            let i = 0, j = 0;
-            for(i,j;i<words.length&&j<textWords.length;i++){
-                if(similitud(words[i], textWords[j])) j++;
-            }
-            if(j>=textWords.length){
-                this.filteredProducts.push(product);
+            if(product.price>=filterFrom && product.price<=filterTo){
+                let productName = product.title;
+                let words = productName.split(' ');
+                let i = 0, j = 0;
+                for(i,j;i<words.length&&j<textWords.length;i++){
+                    if(similitud(words[i], textWords[j])) j++;
+                }
+                if(j>=textWords.length){
+                    this.filteredProducts.push(product);
+                }
             }
         });
         this.currentPage = 0;

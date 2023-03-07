@@ -1,7 +1,11 @@
 
 import modalAccount from "./modals/ModalAccount.js";
 import modalCart from "./modals/ModalCart.js";
-import productPages from "./Pages.js";
+var Filter = null;
+import("./Filter.js")
+  .then((filter) => {
+    Filter = filter.default;
+  }).catch(()=>{});
 
 class NavBar {
 
@@ -13,14 +17,21 @@ class NavBar {
         this.btnHome = document.getElementById("navbar-btn-home");
 
         this.searchInputForm = document.getElementById("search-form"); 
-
+        this.getParams();
         this.addListener();
     }
 
     addListener(){
         this.searchInputForm.addEventListener('submit', (e)=>{
             e.preventDefault();
-            productPages.searchEngine(this.searchInput.value);
+            const search = this.searchInput.value;
+            if(Filter){
+                const priceFrom = Filter.filterFrom.value;
+                const priceTo = Filter.filterTO.value;
+                window.location.href = `home.html?search=${search}&priceFrom=${priceFrom}&priceTo=${priceTo}`;
+            }else{
+                window.location.href = `home.html?search=${search}`;
+            }
         });
         this.btnFavorites.addEventListener('click', (e)=>{
             console.log("favorites");
@@ -37,8 +48,14 @@ class NavBar {
             window.location.href = "home.html";
         });
     }
-
+    
+    getParams(){
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        const search = params.search;
+        this.searchInput.value = search || '';
+    }
 }
 
-let navbar = new NavBar();
+const navbar = new NavBar();
 export default navbar;

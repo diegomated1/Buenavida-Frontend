@@ -1,5 +1,6 @@
-import ModalCart from "./ModalCart.js";
-import ModalProduct from "./ModalProduct.js";
+import ModalAccount from "./modals/ModalAccount.js";
+import ModalCart from "./modals/ModalCart.js";
+import ModalProduct from "./modals/ModalProduct.js";
 import User from "./User.js";
 
 class Product{
@@ -13,6 +14,7 @@ class Product{
         this.favourite = (User.favorites[this.id])?true:false;
         this.discount = product.discount;
         this.discountUni = product.discountUni;
+        this.discountPer = product.discountPer;
     }
     
     getProductInfo(){
@@ -24,6 +26,7 @@ class Product{
             description: this.description,
             favourite: this.favourite,
             discount: this.discount,
+            discount: this.discountPer,
             discountUni: this.discountUni
         })
     }
@@ -32,17 +35,23 @@ class Product{
         document.getElementById(`product-${this.id}`).addEventListener('click', (e)=>{
             var node = e.target;
             while(node !== this){
+                // TODO EL PRODUCTO
                 if(node===null){
                     ModalProduct.changeVisibilty();
-                    ModalProduct.changeInfo(this.getProductInfo());
+                    ModalCart.changeVisibilty(false);
+                    ModalAccount.changeVisibilty(false);
+                    ModalProduct.changeInfo(this);
                     return;
                 }else if(node.id){
+                    // BOTON DE AGREGAR AL CARRITO
                     if(node.id.startsWith('product-btn-add-cart-')){
                         User.addCart(this.getProductInfo(), 1);
                         ModalCart.render();
                         alert(`(1) '${this.title}' Añadido al carrito`);
                         return;
-                    }else if(node.id.startsWith('product-fav-icon-')){
+                    }else 
+                    // BOTON DE AGREGAR A FAVORITOS
+                    if(node.id.startsWith('product-fav-icon-')){
                         this.changeFavorite();
                         return;
                     }
@@ -71,19 +80,6 @@ class Product{
         });
     }
 
-    renderProductAddCartBtn(){
-        return(
-            `<div id="product-btn-add-cart-container-${this.id}" class="product-add-cart-container">`+
-                `<button id="product-btn-add-cart-${this.id}">`+
-                    '<div>'+
-                        '<img src="./resources/images/icons/cesta-de-la-compra-blanca.png" alt="">'+
-                    '</div>'+
-                    '<strong>Añadir a la cesta</strong>'+
-                '</button>'+
-            '</div>'
-        )
-    }
-
     changeFavorite(){
         const favIcon = document.getElementById(`product-fav-icon-${this.id}`);
         if(this.favourite){
@@ -106,8 +102,17 @@ class Product{
         }
     }
 
-    renderToModal(){
-        ModalProduct.changeInfo(this.getProductInfo());
+    renderProductAddCartBtn(){
+        return(
+            `<div id="product-btn-add-cart-container-${this.id}" class="product-add-cart-container">`+
+                `<button id="product-btn-add-cart-${this.id}">`+
+                    '<div>'+
+                        '<img src="./resources/images/icons/cesta-de-la-compra-blanca.png" alt="">'+
+                    '</div>'+
+                    '<strong>Añadir a la cesta</strong>'+
+                '</button>'+
+            '</div>'
+        )
     }
 
     renderToGrilla(){
@@ -115,10 +120,10 @@ class Product{
             `<div id="product-${this.id}" class="product">`+
                 '<div class="product-offert">'+
                     '<div class="product-is-offert">'+
-                    `${(this.discount!=0) ? (
+                    `${(this.discount) ? (
                         '<div class="product-offert-icon">'+
-                            `<span><strong+>- ${this.discount*-1}%</strong`+
-                            `</span><span><strong>${this.discountUni}</strong></span>`+
+                            `<span><strong+>- ${this.discountPer*-1}%</strong></span>`+
+                            `<span><strong>${this.discountUni}</strong></span>`+
                         '</div>'
                     ):''}`+
                     '</div>'+

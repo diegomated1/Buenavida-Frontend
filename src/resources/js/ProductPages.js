@@ -1,7 +1,7 @@
 import products from "../data/products.js";
 import Product from "./Product.js";
 import Paginator from "./Paginator.js";
-class Pages{
+class ProductPages{
 
     constructor(){
         this.allProducts = products;
@@ -139,5 +139,5 @@ class Pages{
 
 }
 
-const productPages = new Pages();
+const productPages = new ProductPages();
 export default productPages;

@@ -13,6 +13,7 @@
 }
 
 .products-pages-container {
+    margin-top: 40px;
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
@@ -44,8 +45,14 @@
     background-color: transparent;
 }
 
+.products-page-number-current {
+    background-color: var(--green-1);
+    color: white;
+}
+
 .products-page-number:hover {
-    background-color: beige;
+    background-color: var(--orange-1);
+    color: black;
 }
 
 @media all and (max-width: 1240px) {

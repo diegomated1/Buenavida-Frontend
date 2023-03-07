@@ -1,24 +1,49 @@
 import products from "../data/products.js";
 import Product from "./Product.js";
-
+import Paginator from "./Paginator.js";
 class Pages{
 
     constructor(){
+        this.grillaContainer = document.getElementsByClassName("right")[0];
         this.productsGrilla = document.getElementsByClassName("products-grilla")[0];
         this.allProducts = products;
         this.productsById = {};
         this.filteredProducts = this.allProducts;
         this.currentPage = 0;
         this.pages = [];
+
         this.toObject();
         this.makePages();
         this.render();
+        this.Paginator = new Paginator(this);
+        this.Paginator.render();
     }
 
     toObject(){
         this.allProducts.map(product=>{
             this.productsById[product.id] = product;
         });
+    }
+
+    previusPage(){
+        if(this.currentPage==0) return;
+        this.currentPage = this.currentPage - 1;
+        this.render();
+        this.Paginator.render();
+    }
+
+    nextPage(){
+        if(this.currentPage==this.pages.length-1) return;
+        this.currentPage = this.currentPage + 1;
+        this.render();
+        this.Paginator.render();
+    }
+
+    changePage(newPage){
+        if(newPage<0 || newPage>=this.pages.length) return;
+        this.currentPage = newPage;
+        this.render();
+        this.Paginator.render();
     }
 
     makePages(){
@@ -35,10 +60,11 @@ class Pages{
 
     render(){
         this.productsGrilla.innerHTML = '';
+        this.grillaContainer.scrollTop = 0;
         let _products = [];
         this.pages[this.currentPage].forEach((item)=>{
             let _product = new Product(item);
-            this.productsGrilla.innerHTML += _product.renderToGrilla();
+            this.productsGrilla.innerHTML += _product.render();
             _products.push(_product);
         });
         _products.forEach(product=>{
@@ -48,4 +74,5 @@ class Pages{
 
 }
 
-let a = new Pages();
+const productPages = new Pages();
+export default productPages;

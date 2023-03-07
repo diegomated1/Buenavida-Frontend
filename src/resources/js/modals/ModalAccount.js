@@ -1,0 +1,52 @@
+
+
+class ModalAccount{
+
+    constructor(){
+        this.modal = document.getElementById("modal-user-account");
+        this.btnAccount = document.getElementById("mua-btn-account");
+        this.btnFav = document.getElementById("mua-btn-fav");
+        this.btnCart = document.getElementById("mua-btn-cart");
+        this.btnLogin = document.getElementById("mua-btn-login");
+        this.btnRegister = document.getElementById("mua-btn-register");
+        this.modal.style.visibility = 'hidden';
+        this.visibility = false;
+        this.addListener();
+    }
+
+    changeVisibilty(visible){
+        if(visible!=undefined){
+            this.visibility = visible;
+            this.modal.style.visibility = visible ? 'visible' : 'hidden';
+        }else if(this.visibility){
+            this.visibility = false;
+            this.modal.style.visibility = 'hidden';
+        }else{
+            this.visibility = true;
+            this.modal.style.visibility = 'visible';
+        }
+    }
+
+    addListener(){
+        this.btnAccount.addEventListener('click', (e)=>{
+            console.log('Mi cuenta');
+        });
+        this.btnFav.addEventListener('click', (e)=>{
+            console.log('Mi Favs');
+        });
+        this.btnCart.addEventListener('click', (e)=>{
+            console.log('Mi Cart');
+        });
+        this.btnLogin.addEventListener('click', (e)=>{
+            console.log('Entrear');
+        });
+        this.btnRegister.addEventListener('click', (e)=>{
+            console.log('cera cuneta');
+        });
+    }
+
+}
+
+const modalAccount = new ModalAccount();
+
+export default modalAccount;

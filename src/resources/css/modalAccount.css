@@ -1,0 +1,46 @@
+
+
+#modal-user-account{
+    position: absolute;
+    width: 200px;
+    top: 70px;
+    right: 25px;
+    border: 1px solid gray;
+    visibility: visible;
+    background-color: white;
+    box-shadow: 1px 10px 50px #b3b3b3;
+    z-index: 20;
+}
+
+.mua-btn{
+    width: 100%;
+    height: 50px;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mua-btn:hover{
+    background-color: var(--green-1);
+}
+
+.mua-btn-icon-container{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mua-btn-icon{
+    width: 20px;
+    height: 20px;
+}
+
+.mua-btn-text{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}

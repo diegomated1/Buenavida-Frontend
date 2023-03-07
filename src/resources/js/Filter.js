@@ -1,4 +1,4 @@
-import productPages from './Pages.js';
+import productPages from './ProductPages.js';
 import navbar from './NavBar.js';
 
 class Filter{

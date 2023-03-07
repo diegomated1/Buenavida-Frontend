@@ -118,7 +118,7 @@ class Product{
         )
     }
 
-    renderToGrilla(){
+    render(){
         return(
             `<div id="product-${this.id}" class="product">`+
                 '<div class="product-offert">'+

@@ -27,7 +27,7 @@ class NavBar {
             const search = this.searchInput.value;
             if(Filter){
                 const priceFrom = Filter.filterFrom.value;
-                const priceTo = Filter.filterTO.value;
+                const priceTo = Filter.filterTo.value;
                 window.location.href = `home.html?search=${search}&priceFrom=${priceFrom}&priceTo=${priceTo}`;
             }else{
                 window.location.href = `home.html?search=${search}`;

@@ -17,9 +17,9 @@ class ProductPages{
         this.priceFrom;
         this.priceTo;
 
-        let [low, high] = this.getLowHighPrice();
-        this.lowPrice = low;
-        this.highPrice = high;
+        let [min, max] = this.getLowHighPrice();
+        this.minPrice = min;
+        this.maxPrice = max;
 
         this.getParams();
         this.searchEngine(this.search, this.priceFrom, this.priceTo);
@@ -29,17 +29,28 @@ class ProductPages{
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         this.search = params.search || '';
-        this.priceFrom = (params.priceFrom && parseFloat(params.priceFrom)!=NaN) ? parseFloat(params.priceFrom) : this.lowPrice;
-        this.priceTo = (params.priceTo && parseFloat(params.priceTo)!=NaN) ? parseFloat(params.priceTo) : this.highPrice;
-        if(this.priceFrom<this.lowPrice){
-            this.priceFrom = this.lowPrice;
+        this.priceFrom = (params.priceFrom && parseFloat(params.priceFrom)!=NaN) ? parseFloat(params.priceFrom) : this.minPrice;
+        this.priceTo = (params.priceTo && parseFloat(params.priceTo)!=NaN) ? parseFloat(params.priceTo) : this.maxPrice;
+        let [from, to] = this.verifyFilter(this.priceFrom, this.priceTo);
+        this.priceFrom = from;
+        this.priceTo = to;
+    }
+
+    verifyFilter(from, to){
+        if(from < this.minPrice){
+            from = this.minPrice;
+        }else if(from > this.maxPrice){
+            from = this.maxPrice;
         }
-        if(this.priceTo>this.highPrice){
-            this.priceTo = this.highPrice;
+        if(to < this.minPrice){
+            to = this.minPrice;
+        }else if(to > this.maxPrice){
+            to = this.maxPrice;
         }
-        if(this.priceFrom>this.priceTo){
-            this.priceFrom = this.priceTo;
+        if(from > to){
+            from = to;
         }
+        return [from, to];
     }
 
     getLowHighPrice(){

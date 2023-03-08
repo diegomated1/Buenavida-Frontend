@@ -1,6 +1,7 @@
 import ModalAccount from "./modals/ModalAccount.js";
 import ModalCart from "./modals/ModalCart.js";
 import ModalProduct from "./modals/ModalProduct.js";
+import navbar from "./NavBar.js";
 import User from "./User.js";
 
 class Product{
@@ -48,6 +49,7 @@ class Product{
                     if(node.id.startsWith('product-btn-add-cart-')){
                         User.addCart(this.getProductInfo(), 1, ()=>{
                             ModalCart.render();
+                            navbar.render();
                             alert(`(1) '${this.title}' Añadido al carrito`);
                         });
                         return;

@@ -1,4 +1,5 @@
 
+import navbar from '../NavBar.js';
 import User from '../User.js';
 var Cart = null;
 import("../Cart.js")
@@ -98,6 +99,7 @@ class ModalCartProduct{
         document.getElementById(`cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
             User.addCart(this.product, 1, ()=>{
                 modalCart.render();
+                navbar.render();
                 if(Cart){
                     Cart.render();
                 }
@@ -107,6 +109,7 @@ class ModalCartProduct{
             if(this.amount==1) return;
             User.delCart(this.product.id, 1, ()=>{
                 modalCart.render();
+                navbar.render();
                 if(Cart){
                     Cart.render();
                 }
@@ -115,6 +118,7 @@ class ModalCartProduct{
         document.getElementById(`cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
             User.removeProductCart(this.product.id, ()=>{
                 modalCart.render();
+                navbar.render();
                 if(Cart){
                     Cart.render();
                 }

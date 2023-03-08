@@ -1,5 +1,6 @@
 import User from "./User.js";
 import ModalCart from "./modals/ModalCart.js";
+import navbar from "./NavBar.js";
 
 class Cart{
 
@@ -64,6 +65,7 @@ class CartProduct{
             User.addCart(this.product, 1, ()=>{
                 cart.render();
                 ModalCart.render();
+                navbar.render();
             });
             console.timeEnd("render_cart");
         });
@@ -73,6 +75,7 @@ class CartProduct{
             User.delCart(this.product.id, 1, ()=>{
                 cart.render();
                 ModalCart.render();
+                navbar.render();
             });
             console.timeEnd("render_cart");
         });
@@ -81,6 +84,7 @@ class CartProduct{
             User.removeProductCart(this.product.id, ()=>{
                 cart.render();
                 ModalCart.render();
+                navbar.render();
             });
             console.timeEnd("render_cart");
         });

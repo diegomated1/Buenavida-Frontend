@@ -1,3 +1,4 @@
+import navbar from "../NavBar.js";
 import User from "../User.js";
 import modalCart from "./ModalCart.js";
 class ModalProduct{
@@ -47,6 +48,7 @@ class ModalProduct{
         this.addCartBtn.addEventListener('click', ()=>{
             User.addCart(this.product, parseInt(this.inputAmount.value), ()=>{
                 modalCart.render();
+                navbar.render();
                 alert(`(${this.inputAmount.value}) '${this.product.title}' Añadidos al carrito`);
             });
         });

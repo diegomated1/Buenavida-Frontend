@@ -1,6 +1,7 @@
 
 import modalAccount from "./modals/ModalAccount.js";
 import modalCart from "./modals/ModalCart.js";
+import User from "./User.js";
 var Filter = null;
 import("./Filter.js")
   .then((filter) => {
@@ -16,9 +17,11 @@ class NavBar {
         this.btnCart = document.getElementById("navbar-btn-cart");
         this.btnHome = document.getElementById("navbar-btn-home");
 
+        this.navbarCartAmount = document.getElementById("navbar-cart-amount");
         this.searchInputForm = document.getElementById("search-form"); 
         this.getParams();
         this.addListener();
+        this.render();
     }
 
     addListener(){
@@ -54,6 +57,24 @@ class NavBar {
         const params = Object.fromEntries(urlSearchParams.entries());
         const search = params.search;
         this.searchInput.value = search || '';
+    }
+
+    render(){
+        var amount = 0;
+        Object.values(User.getCart()).forEach(item=>{
+            amount += item.amount;
+        });
+        if(amount==0){
+            this.navbarCartAmount.style.visibility = 'hidden';
+        }else if(amount>99){
+            this.navbarCartAmount.style.visibility = 'visible';
+            this.navbarCartAmount.style.fontSize = '12px';
+            this.navbarCartAmount.innerHTML = '+99';
+        }else{
+            this.navbarCartAmount.style.visibility = 'visible';
+            this.navbarCartAmount.style.fontSize = '13px';
+            this.navbarCartAmount.innerHTML = amount;
+        }
     }
 }
 

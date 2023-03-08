@@ -69,9 +69,10 @@ class Product{
         var isOver = false;
         product.addEventListener('mouseover', (e)=>{
             if(isOver) return;
-            product.style.height = '420px';
+            product.style.height = '450px';
             product.style.zIndex = '10';
             this.changeFavIconVisibility();
+            document.getElementById(`product-image-${this.uniqid}`).style.height = '250px';
             product.innerHTML = product.innerHTML + this.renderProductAddCartBtn();
             isOver = true;
         });
@@ -80,6 +81,7 @@ class Product{
             product.style.height = '350px';
             product.style.zIndex = '0';
             this.changeFavIconVisibility();
+            document.getElementById(`product-image-${this.uniqid}`).style.height = '200px';
             document.getElementById(`product-btn-add-cart-container-${this.uniqid}`).remove();
         });
     }
@@ -136,11 +138,11 @@ class Product{
                         '</div>'+
                     '</div>'+
                 '</div>'+
-                `<div id="product-image-${this.id}" class="product-image">`+
+                `<div id="product-image-${this.uniqid}" class="product-image">`+
                     `<img src="./resources/images/products/${this.id}.jpg" alt="">`+
                 '</div>'+
                 '<div class="product-name">'+
-                `<span><strong>${this.title}</strong></span>`+
+                    `<span><strong>${this.title}</strong></span>`+
                 '</div>'+
                 '<div class="product-description">'+
                     '<div class="product-desc-cant">'+

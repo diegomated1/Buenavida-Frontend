@@ -35,7 +35,7 @@ class ModalAccount{
             console.log('Mi Favs');
         });
         this.btnCart.addEventListener('click', (e)=>{
-            console.log('Mi Cart');
+            window.location.href = 'cart.html';
         });
         this.btnLogin.addEventListener('click', (e)=>{
             window.location.href = 'login.html';

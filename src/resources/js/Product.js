@@ -110,9 +110,6 @@ class Product{
         return(
             `<div id="product-btn-add-cart-container-${this.uniqid}" class="product-add-cart-container">`+
                 `<button id="product-btn-add-cart-${this.uniqid}">`+
-                    '<div>'+
-                        '<img src="./resources/images/icons/cesta-de-la-compra-blanca.png" alt="">'+
-                    '</div>'+
                     '<strong>Añadir a la cesta</strong>'+
                 '</button>'+
             '</div>'

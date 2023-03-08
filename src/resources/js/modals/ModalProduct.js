@@ -33,20 +33,24 @@ class ModalProduct{
             this.changeVisibilty();
         });
         this.moreBtn.addEventListener('click', ()=>{
-            this.inputAmount.innerHTML = parseInt(this.inputAmount.innerHTML) + 1;
+            this.inputAmount.value = parseInt(this.inputAmount.value) + 1;
         });
         this.lessBtn.addEventListener('click', ()=>{
-            if(this.inputAmount.innerHTML==0) return;
-            this.inputAmount.innerHTML = parseInt(this.inputAmount.innerHTML) - 1;
+            if(this.inputAmount.value==1) return;
+            this.inputAmount.value = parseInt(this.inputAmount.value) - 1;
+        });
+        this.inputAmount.addEventListener('change', (e)=>{
+            if(parseInt(e.target.value)<=0){
+                e.target.value = 1;
+            }
         });
         this.addCartBtn.addEventListener('click', ()=>{
-            User.addCart(this.product, parseInt(this.inputAmount.innerHTML), ()=>{
+            User.addCart(this.product, parseInt(this.inputAmount.value), ()=>{
                 modalCart.render();
-                alert(`(${this.inputAmount.innerHTML}) '${this.product.title}' Añadidos al carrito`);
+                alert(`(${this.inputAmount.value}) '${this.product.title}' Añadidos al carrito`);
             });
         });
         this.favoriteBtn.addEventListener('click', ()=>{
-            console.log(this.modalISFavorite);
             this.changeFavorite();
         });
     }

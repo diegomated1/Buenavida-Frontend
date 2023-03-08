@@ -161,7 +161,9 @@
 .product-add-cart-container > button{
     width: 200px;
     height: 40px;
-    background-color: var(--orange-1);
+    background: url('../images/icons/cesta-de-la-compra-blanca.png') no-repeat 20px 50%;
+    background-size: 25px;
+    background-color: var(--green-1);
     border: 1px solid gray;
     border-radius: 25px;
     color: white;
@@ -169,10 +171,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    padding-left: 30px;
 }
 
 .product-add-cart-container > button:hover {
-    background-color: var(--orange-2);
+    background: url('../images/icons/cesta-de-la-compra-negra.png') no-repeat 20px 50%;
+    background-size: 25px;
+    background-color: var(--orange-1);
+    color: black;
 }
 
 .product-add-cart-container > button > div{

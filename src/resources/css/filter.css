@@ -42,31 +42,41 @@
     display: flex;
 }
 
-.filter-price-from{
+.filter-price-container{
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.filter-price-from-text {
+.filter-price-text-container {
     width: 100%;
     height: 14px;
     font-size: 10px;
 }
 
-.filter-price-from-input {
+.filter-price-input-container {
     flex: 1;
-    padding: 3px 3px 3px 0;
     display: flex;
     align-items: center;
 }
 
-.filter-price-from-input > input {
-    width: 100%;
+.filter-price-input{
+    width: 80%;
+    height: 90%;
+    background-color: #eaeaf1;
+    border-radius: 3px;
+}
+
+.filter-price-input > input {
+    width: 75%;
     height: 100%;
     border: none;
-    background-color: #F6F6FB;
-    border-radius: 2px;
+    background-color: transparent;
+    padding-left: 25%;
+}
+
+.filter-price-input > input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
 }
 
 .filter-button-container{
@@ -91,4 +101,66 @@
 .filter-button:hover{
     background-color: var(--orange-1);
     color: black;
+}
+
+
+#input-range-container{
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+#input-slider-container{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #efefef;
+    background-color: rgb(232, 232, 232);
+}
+
+#input-slider{
+    height: 100%;
+    background-color: var(--green-1);
+}
+
+.input-range {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.input-range input {
+    position: absolute;
+    width: 100%;
+    top: -7px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}
+
+.input-range input::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+.input-range input::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    pointer-events: auto;
+    -moz-appearance: none;
+}
+
+#input-range-from::-webkit-slider-thumb {
+    border: 3px solid var(--green-1);
+    background-color: var(--green-1);
+}
+
+#input-range-to::-webkit-slider-thumb {
+    border: 3px solid var(--green-1);
+    background-color: #fff;
 }

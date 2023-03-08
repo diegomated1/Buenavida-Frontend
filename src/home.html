@@ -77,23 +77,35 @@
                             </div>
                         </div>
                         <div class="filter-price">
-                            <input type="range">
-                        </div>
-                        <div class="filter-price-inputs">
-                            <div class="filter-price-from">
-                                <div class="filter-price-from-text">
-                                    <span>DESDE</span>
-                                </div>
-                                <div class="filter-price-from-input">
-                                    <input id="filter-input-from" type="number" placeholder="1 $">
+                            <div id="input-range-container">
+                                <div class="input-range">
+                                    <input id="input-range-from" type="range" min="0" max="100" step="0.01"/>
+                                    <input id="input-range-to" type="range" min="0" max="100" step="0.01"/>
+                                    <div id="input-slider-container">
+                                        <div id="input-slider"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="filter-price-from">
-                                <div class="filter-price-from-text">
+                        </div>
+                        <div class="filter-price-inputs">
+                            <div class="filter-price-container">
+                                <div class="filter-price-text-container">
+                                    <span>DESDE</span>
+                                </div>
+                                <div class="filter-price-input-container">
+                                    <div class="filter-price-input">
+                                        <input id="filter-input-from" class="filter-inputs" type="number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-price-container">
+                                <div class="filter-price-text-container">
                                     <span>DE</span>
                                 </div>
-                                <div class="filter-price-from-input">
-                                    <input id="filter-input-to" type="number" placeholder="82 $">
+                                <div class="filter-price-input-container">
+                                    <div class="filter-price-input">
+                                        <input id="filter-input-to" class="filter-inputs" type="number">
+                                    </div>
                                 </div>
                             </div>
                         </div>

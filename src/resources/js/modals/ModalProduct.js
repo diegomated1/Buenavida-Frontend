@@ -53,7 +53,13 @@ class ModalProduct{
             });
         });
         this.favoriteBtn.addEventListener('click', ()=>{
-            this.changeFavorite();
+            this.product.changeFavorite((favorite)=>{
+                if(favorite){
+                    this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled_red.png";
+                }else{
+                    this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
+                }
+            });
         });
     }
 
@@ -67,16 +73,6 @@ class ModalProduct{
         }else{
             this.visibility = true;
             this.modal.style.visibility = 'visible';
-        }
-    }
-
-    changeFavorite(){
-        if(this.product.favourite){
-            this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled_red.png";
-            this.product.changeFavorite();
-        }else{
-            this.favoriteBtnIcon.src = "./resources/images/icons/heart_filled.png";
-            this.product.changeFavorite();
         }
     }
 

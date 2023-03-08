@@ -86,17 +86,19 @@ class Product{
         });
     }
 
-    changeFavorite(){
+    changeFavorite(cb){
         const favIcon = document.getElementById(`product-fav-icon-${this.uniqid}`);
         if(this.favourite){
             User.removeFavorite(this.id, ()=>{
                 favIcon.querySelector('img').src = './resources/images/icons/heart_filled.png';
                 this.favourite = false;
+                if(cb) cb(this.favourite);
             });
         }else{
             User.addFavorite(this.getProductInfo(), ()=>{
                 favIcon.querySelector('img').src = './resources/images/icons/heart_filled_red.png';
                 this.favourite = true;
+                if(cb) cb(this.favourite);
             });
         }
     }

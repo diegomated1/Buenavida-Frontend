@@ -22,8 +22,8 @@ class Filter{
 
     addListener(){
         this.rangeFrom.addEventListener('input', (e)=>{
-            let valFrom = parseFloat(e.target.value);
-            let valTo = parseFloat(this.rangeTo.value);
+            const valFrom = parseFloat(e.target.value);
+            const valTo = parseFloat(this.rangeTo.value);
             if(valFrom<this.minPrice){
                 e.target.value = this.minPrice;
             }
@@ -35,8 +35,8 @@ class Filter{
         });
         
         this.rangeTo.addEventListener('input', (e)=>{
-            let valFrom = parseFloat(this.rangeFrom.value);
-            let valTo = parseFloat(e.target.value);
+            const valFrom = parseFloat(this.rangeFrom.value);
+            const valTo = parseFloat(e.target.value);
             if(valTo>this.maxPrice){
                 e.target.value = this.maxPrice;
             }
@@ -90,21 +90,19 @@ class Filter{
 
     getParams(){
         const urlSearchParams = new URLSearchParams(window.location.search);
-        const params = Object.fromEntries(urlSearchParams.entries());
-        var priceFrom = (params.priceFrom && parseFloat(params.priceFrom)!=NaN) ? parseFloat(params.priceFrom) : this.minPrice;
-        var priceTo = (params.priceTo && parseFloat(params.priceTo)!=NaN) ? parseFloat(params.priceTo) : this.maxPrice;
-        let [from, to] = this.verifyFilter(priceFrom, priceTo);
+        const {priceFrom, priceTo} = Object.fromEntries(urlSearchParams.entries());
+        const _priceFrom = (priceFrom && parseFloat(priceFrom)!=NaN) ? parseFloat(priceFrom) : this.minPrice;
+        const _priceTo = (priceTo && parseFloat(priceTo)!=NaN) ? parseFloat(priceTo) : this.maxPrice;
+        let [from, to] = this.verifyFilter(_priceFrom, _priceTo);
         this.filterFrom.value = from;
         this.filterTo.value = to;
     }
     
     render(){
-        let from = parseFloat(this.filterFrom.value);
-        let to = parseFloat(this.filterTo.value);
-        let perFrom = (100 * from)/(this.maxPrice-this.minPrice);
-        let perTo = (100 * to)/(this.maxPrice-this.minPrice);
-        this.slider.style.marginLeft = `${parseInt(perFrom)}%`;
-        this.slider.style.marginRight = `${100-parseInt(perTo)}%`;
+        let perFrom = this.filterFrom.value
+        let perTo = this.filterTo.value
+        this.slider.style.marginLeft = `${perFrom}%`;
+        this.slider.style.marginRight = `${100-parseFloat(perTo)}%`;
         this.rangeFrom.value = perFrom;
         this.rangeTo.value = perTo;
     }

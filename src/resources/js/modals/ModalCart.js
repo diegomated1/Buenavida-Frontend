@@ -56,17 +56,21 @@ class ModalCart{
         this.modalSubTotal = 0;
         this.modalTotal = 0;
         let _ModalCardProducts = [];
+        var total_amount = 0;
         Object.values(User.getCart()).forEach(item=>{
+            total_amount += item.amount;
             let _product = new ModalCartProduct(item.amount, item.product);
             this.modalSubTotal += _product.totalPrice;
             this.modalTotal += _product.totalPrice;
             this.productList.innerHTML += _product.render();
             _ModalCardProducts.push(_product);
         });
+        this.modalSubTotal = parseFloat(this.modalSubTotal.toFixed(2));
+        this.modalTotal = parseFloat(this.modalSubTotal);
         _ModalCardProducts.forEach(product=>{
             product.addListener();
         });
-        this.cartTitleAndLength.innerHTML = `MI CARRITO ${(_ModalCardProducts.length==0)?'':`(${_ModalCardProducts.length})`}`;
+        this.cartTitleAndLength.innerHTML = `MI CARRITO ${(total_amount==0)?'':`(${total_amount})`}`;
         this.modalSubTotalText.innerHTML = this.modalSubTotal + ' $';
         this.modalTotalText.innerHTML = this.modalTotal + ' $';
         this.modalLeftText.innerHTML = `Te faltan ${(45-this.modalTotal>0)?(45-this.modalTotal):'0'}$ para disfrutar del envio gratuito`;
@@ -158,7 +162,9 @@ class ModalCartProduct{
                             '</div>'+
                         '</div>'+
                         '<div class="cart-product-price">'+
-                            `<span id="cart-product-total-price-${this.product.id}">${this.totalPrice} $</span>`+
+                            `<span id="cart-product-total-price-${this.product.id}">
+                                ${(this.totalPrice.toFixed(2))}
+                            $</span>`+
                         '</div>'+
                     '</div>'+
                 '</div>'+

@@ -22,17 +22,21 @@ class Cart{
         this.subTotal = 0;
         this.total = 0;
         let _CardProducts = [];
+        var total_amount = 0;
         Object.values(User.getCart()).forEach(item=>{
+            total_amount += item.amount;
             let _product = new CartProduct(item.amount, item.product);
             this.subTotal += _product.totalPrice;
             this.total += _product.totalPrice;
             this.productList.innerHTML += _product.render();
             _CardProducts.push(_product);
         });
+        this.subTotal = parseFloat(this.subTotal.toFixed(2));
+        this.total = parseFloat(this.subTotal);
         _CardProducts.forEach(product=>{
             product.addListener();
         });
-        this.productListLength.innerHTML = `${(_CardProducts.length==0)?'Ningun Articulo':`${_CardProducts.length} Articulos`}`;
+        this.productListLength.innerHTML = `${(total_amount==0)?'Ningun Articulo':`${total_amount} Articulos`}`;
         this.subTotalText.innerHTML = this.subTotal + ' $';
         this.totalText.innerHTML = this.total + ' $';
     }
@@ -118,7 +122,9 @@ class CartProduct{
                     '</div>'+
                 '</div>'+
                 '<div class="cart-product-total-price">'+
-                    `<span><strong>${this.totalPrice} $</strong></span>`+
+                    `<span><strong>
+                        ${this.totalPrice.toFixed(2)} $
+                    </strong></span>`+
                 '</div>'+
                 '<div class="cart-product-btn-delete-container">'+
                     `<button id="page-cart-btn-close-${this.product.id}" class="cart-product-btn-delete">`+

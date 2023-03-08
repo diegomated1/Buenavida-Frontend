@@ -18,6 +18,9 @@ class Cart{
         this.render();
     }
 
+    /**
+     * Render products, subtotal, total in the cart page
+     */
     render(){
         this.productList.innerHTML = "";
         this.subTotal = 0;
@@ -52,44 +55,40 @@ class CartProduct{
         this.totalPrice = parseFloat(this.product.price)*parseInt(this.amount);
     }
 
-    changeAmount(newAmount){
-        this.amount = newAmount;
-        document.getElementById(`cart-amount-${this.product.id}`).innerHTML = newAmount;
-        this.totalPrice = parseFloat(this.product.price)*parseInt(this.amount);
-        document.getElementById(`cart-product-total-price-${this.product.id}`).innerHTML = `${this.totalPrice} $`;
-    }
-
+    /**
+     * function to add listeners
+     */
     addListener(){
+        // Add one product to the cart
         document.getElementById(`page-cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
-            console.time("render_cart");
             User.addCart(this.product, 1, ()=>{
                 cart.render();
                 ModalCart.render();
                 navbar.render();
             });
-            console.timeEnd("render_cart");
         });
+        // Remove one product from the cart
         document.getElementById(`page-cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
-            console.time("render_cart");
             if(this.amount==1) return;
             User.delCart(this.product.id, 1, ()=>{
                 cart.render();
                 ModalCart.render();
                 navbar.render();
             });
-            console.timeEnd("render_cart");
         });
+        // Remove the product from the cart
         document.getElementById(`page-cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
-            console.time("render_cart");
             User.removeProductCart(this.product.id, ()=>{
                 cart.render();
                 ModalCart.render();
                 navbar.render();
             });
-            console.timeEnd("render_cart");
         });
     }
 
+    /**
+     * @returns HTML for the cart product
+     */
     render(){
         return(
             '<div class="cart-product-item">'+

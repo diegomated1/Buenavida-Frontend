@@ -6,12 +6,18 @@ class Paginator{
         this.productPages = productPages;
     }
 
+    /**
+     * Function to add listeners
+     */
     addListener(){
         this.paginatorsBtn.forEach(_paginator=>{
             _paginator.addListener();
         });
     }
 
+    /**
+     * Render paginator buttons
+     */
     render(){
         this.paginator.innerHTML = '';
         this.paginatorsBtn = [];
@@ -54,23 +60,33 @@ class PaginatorBtn{
         this.text = text;
     }
 
+    /**
+     * Function to add listeners
+     */
     addListener(){
+        // Add listener depending of the type of button
         var paginatorBtn =document.getElementById(`products-paginator-btn-${this.id}`);
         if(this.type==0){
+            // If is '<' go to the previus page
             paginatorBtn.addEventListener('click', ()=>{
                 this.paginator.productPages.previusPage();
             });
         }else if(this.type==1){
+            // If is '>' go to the next page
             paginatorBtn.addEventListener('click', ()=>{
                 this.paginator.productPages.nextPage();
             });
         }else{
+            // If is number go to the page number
             paginatorBtn.addEventListener('click', ()=>{
                 this.paginator.productPages.changePage(parseInt(this.text)-1);
             });
         }
     }
 
+    /**
+     * @returns HTML of the button paginator and check if is the current page
+     */
     render(){
         const isCurrent = (this.type==2 && this.paginator.productPages.currentPage == parseInt(this.text)-1) ? true : false;
         return(

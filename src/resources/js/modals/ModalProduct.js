@@ -29,22 +29,30 @@ class ModalProduct{
         this.addListener();
     }
 
+    /**
+     * Function to add event listeners
+     */
     addListener(){
+        // Close modal
         this.modalClose.addEventListener('click', ()=>{
             this.changeVisibilty();
         });
+        // Add one to the input amount
         this.moreBtn.addEventListener('click', ()=>{
             this.inputAmount.value = parseInt(this.inputAmount.value) + 1;
         });
+        // Remove one from the input amount
         this.lessBtn.addEventListener('click', ()=>{
             if(this.inputAmount.value==1) return;
             this.inputAmount.value = parseInt(this.inputAmount.value) - 1;
         });
+        // Check if the input value is less than 0
         this.inputAmount.addEventListener('change', (e)=>{
             if(parseInt(e.target.value)<=0){
                 e.target.value = 1;
             }
         });
+        // Add the product amount to the cart
         this.addCartBtn.addEventListener('click', ()=>{
             User.addCart(this.product, parseInt(this.inputAmount.value), ()=>{
                 modalCart.render();
@@ -52,6 +60,7 @@ class ModalProduct{
                 alert(`(${this.inputAmount.value}) '${this.product.title}' Añadidos al carrito`);
             });
         });
+        // Add or remove from favorites
         this.favoriteBtn.addEventListener('click', ()=>{
             this.product.changeFavorite((favorite)=>{
                 if(favorite){
@@ -62,7 +71,11 @@ class ModalProduct{
             });
         });
     }
-
+    
+    /**
+     * change the visibility of the modal
+     * @param {*} visible param for change visibility manually 
+     */
     changeVisibilty(visible){
         if(visible!=undefined){
             this.visibility = visible;
@@ -76,6 +89,10 @@ class ModalProduct{
         }
     }
 
+    /**
+     * Change the info in the modal
+     * @param {*} product product to change in the modal
+     */
     changeInfo(product){
         this.product = product;
         this.modalTitle.innerHTML = product.title;

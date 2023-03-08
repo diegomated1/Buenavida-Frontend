@@ -13,7 +13,10 @@ class ModalAccount{
         this.visibility = false;
         this.addListener();
     }
-
+    /**
+     * change the visibility of the modal
+     * @param {*} visible param for change visibility manually 
+     */
     changeVisibilty(visible){
         if(visible!=undefined){
             this.visibility = visible;
@@ -26,7 +29,9 @@ class ModalAccount{
             this.modal.style.visibility = 'visible';
         }
     }
-
+    /**
+     * Function to add event listeners
+     */
     addListener(){
         this.btnAccount.addEventListener('click', (e)=>{
             console.log('Mi cuenta');

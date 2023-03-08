@@ -20,7 +20,11 @@ class Filter{
         this.addListener();
     }
 
+    /**
+     * Function to add listeners
+     */
     addListener(){
+        // Slider min price controller
         this.rangeFrom.addEventListener('input', (e)=>{
             const valFrom = parseFloat(e.target.value);
             const valTo = parseFloat(this.rangeTo.value);
@@ -33,7 +37,7 @@ class Filter{
             this.slider.style.marginLeft = `${e.target.value}%`;
             this.filterFrom.value = e.target.value;
         });
-        
+        // Slider max price controller
         this.rangeTo.addEventListener('input', (e)=>{
             const valFrom = parseFloat(this.rangeFrom.value);
             const valTo = parseFloat(e.target.value);
@@ -46,7 +50,7 @@ class Filter{
             this.slider.style.marginRight = `${100-e.target.value}%`;
             this.filterTo.value = e.target.value;
         });
-
+        // Input min and max price controller
         Object.values(this.filterInputs).forEach(_filter=>{
             _filter.addEventListener('change', ()=>{
                 let valFrom = parseFloat(this.filterFrom.value);
@@ -63,6 +67,7 @@ class Filter{
             });
         });
 
+        // When click in btn filter search with the filters
         this.filterBtn.addEventListener('click', ()=>{
             const search = navbar.searchInput.value;
             const priceFrom = this.filterFrom.value;

@@ -24,7 +24,11 @@ class NavBar {
         this.render();
     }
 
+    /**
+     * Function to add listeners
+     */
     addListener(){
+        // When submit search the products with the product name and filters if exits
         this.searchInputForm.addEventListener('submit', (e)=>{
             e.preventDefault();
             const search = this.searchInput.value;
@@ -36,22 +40,29 @@ class NavBar {
                 window.location.href = `home.html?search=${search}`;
             }
         });
+        // Button favorites
         this.btnFavorites.addEventListener('click', (e)=>{
             console.log("favorites");
         });
+        // Show account modal and hidde other modals
         this.btnAccount.addEventListener('click', (e)=>{
             modalAccount.changeVisibilty();
             modalCart.changeVisibilty(false);
         });
+        // Show cart modal and hidde other modals
         this.btnCart.addEventListener('click', (e)=>{
             modalCart.changeVisibilty();
             modalAccount.changeVisibilty(false);
         });
+        // Go to home
         this.btnHome.addEventListener('click', (e)=>{
             window.location.href = "home.html";
         });
     }
     
+    /**
+     * Get url params and check if exits 'search' param
+     */
     getParams(){
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
@@ -59,6 +70,9 @@ class NavBar {
         this.searchInput.value = search || '';
     }
 
+    /**
+     * Render cart amount of products in the cart
+     */
     render(){
         var amount = 0;
         Object.values(User.getCart()).forEach(item=>{

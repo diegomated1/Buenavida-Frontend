@@ -25,6 +25,9 @@ class ProductPages{
         this.searchEngine(this.search, this.priceFrom, this.priceTo);
     }
 
+    /**
+     * Get search, priceFrom and priceTo params to search products
+     */
     getParams(){
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
@@ -36,6 +39,12 @@ class ProductPages{
         this.priceTo = to;
     }
 
+    /**
+     * Check if the priceFrom and priceTo are valid
+     * @param {*} from from price
+     * @param {*} to to price
+     * @returns priceFrom adn priceTo fixed
+     */
     verifyFilter(from, to){
         if(from < this.minPrice){
             from = this.minPrice;
@@ -53,6 +62,9 @@ class ProductPages{
         return [from, to];
     }
 
+    /**
+     * @returns The low and high product prices
+     */
     getLowHighPrice(){
         let min = 1000;
         let max = 0;
@@ -67,6 +79,9 @@ class ProductPages{
         return [min, max];
     }
 
+    /**
+     * Go to the previus page if the current page is '> 0'
+     */
     previusPage(){
         if(this.currentPage==0) return;
         this.currentPage = this.currentPage - 1;
@@ -74,6 +89,9 @@ class ProductPages{
         this.Paginator.render();
     }
 
+    /**
+     * Go to the next page if the current page is '< pages length'
+     */
     nextPage(){
         if(this.currentPage==this.pages.length-1) return;
         this.currentPage = this.currentPage + 1;
@@ -81,6 +99,10 @@ class ProductPages{
         this.Paginator.render();
     }
 
+    /**
+     * Go to especific page if the page '> 0' and '< pages length' 
+     * @param {*} newPage number of the page to change
+     */
     changePage(newPage){
         if(newPage<0 || newPage>=this.pages.length) return;
         this.currentPage = newPage;
@@ -88,6 +110,9 @@ class ProductPages{
         this.Paginator.render();
     }
 
+    /**
+     * Function to distribute all the filtered products in pages of 12 products
+     */
     makePages(){
         let pages = [[]];
         this.filteredProducts.forEach((item)=>{
@@ -100,6 +125,12 @@ class ProductPages{
         this.pages = pages;
     }
 
+    /**
+     * Function to search products with the params
+     * @param {*} inputText product name to search
+     * @param {*} filterFrom min price to search
+     * @param {*} filterTo max price to search
+     */
     searchEngine(inputText, filterFrom, filterTo){
         console.time("search_engine");
         this.filteredProducts = [];
@@ -134,6 +165,9 @@ class ProductPages{
         console.timeEnd("search_engine");
     }
 
+    /**
+     * Render products in the grid container
+     */
     render(){
         this.productsGrilla.innerHTML = '';
         this.grillaContainer.scrollTop = 0;

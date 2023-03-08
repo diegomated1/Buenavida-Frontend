@@ -4,6 +4,7 @@ import User from "../User.js";
 class Register{
 
     constructor(){
+        // Form input and buttons
         this.form = document.getElementById("register");
         this.firstNameInput = document.getElementById("register-input-name");
         this.lastNameInput = document.getElementById("register-input-last-name");
@@ -15,8 +16,11 @@ class Register{
         this.passwordReq = document.getElementById("register-password-info");
         this.addListener();
     }
-
+    /**
+     * Function to add event listeners
+     */
     addListener(){
+        // Execute User register function and check inputs requeriments
         this.form.addEventListener('submit', (e)=>{
             e.preventDefault();
             if(this.passwordInput.value!==this.confirmPasswordInput.value){
@@ -24,12 +28,7 @@ class Register{
             }else{
                 let isSecure = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(this.passwordInput.value);
                 if(!isSecure){
-                    this.passwordInput.style.borderColor = 'red';
-                    this.confirmPasswordInput.style.borderColor = 'red';
-                    setTimeout(()=>{
-                        this.passwordInput.style.border = '1px solid rgb(226, 226, 226)';
-                        this.confirmPasswordInput.style.border = '1px solid rgb(226, 226, 226)';
-                    }, 2000);
+                    alert("La contraseña debe tener minimo 8 caracateres por lo menos 1 letra mayuscula, 1 letra miniscula, 1 numero y 1 simbolo");
                     return;
                 }
             }

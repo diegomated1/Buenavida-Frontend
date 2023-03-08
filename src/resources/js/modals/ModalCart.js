@@ -29,6 +29,9 @@ class ModalCart{
         this.addListener();
     }
 
+    /**
+     * Function to add event listeners
+     */
     addListener(){
         this.closeModalBtn.addEventListener('click', (e)=>{
             this.changeVisibilty();
@@ -38,6 +41,10 @@ class ModalCart{
         });
     }
 
+    /**
+     * change the visibility of the modal
+     * @param {*} visible param for change visibility manually 
+     */
     changeVisibilty(visible){
         if(visible!=undefined){
             this.visibility = visible;
@@ -51,6 +58,9 @@ class ModalCart{
         }
     }
 
+    /**
+     * Renders products, total, subtotal in the cart modal
+     */
     render(){
         //console.time("render_cart");
         this.productList.innerHTML = "";
@@ -88,14 +98,11 @@ class ModalCartProduct{
         this.totalPrice = parseFloat(this.product.price)*parseInt(this.amount);
     }
 
-    changeAmount(newAmount){
-        this.amount = newAmount;
-        document.getElementById(`cart-amount-${this.product.id}`).innerHTML = newAmount;
-        this.totalPrice = parseFloat(this.product.price)*parseInt(this.amount);
-        document.getElementById(`cart-product-total-price-${this.product.id}`).innerHTML = `${this.totalPrice} $`;
-    }
-
+    /**
+     * Function to add event listeners
+     */
     addListener(){
+        // Add one product to cart
         document.getElementById(`cart-btn-more-${this.product.id}`).addEventListener('click', (e)=>{
             User.addCart(this.product, 1, ()=>{
                 modalCart.render();
@@ -105,6 +112,7 @@ class ModalCartProduct{
                 }
             });
         });
+        // Remove one product from cart
         document.getElementById(`cart-btn-less-${this.product.id}`).addEventListener('click', (e)=>{
             if(this.amount==1) return;
             User.delCart(this.product.id, 1, ()=>{
@@ -115,6 +123,7 @@ class ModalCartProduct{
                 }
             });
         });
+        // Remove the product from cart
         document.getElementById(`cart-btn-close-${this.product.id}`).addEventListener('click', (e)=>{
             User.removeProductCart(this.product.id, ()=>{
                 modalCart.render();
@@ -126,6 +135,9 @@ class ModalCartProduct{
         });
     }
 
+    /**
+     * @returns HTML for the products in the cart modal
+     */
     render(){
         return(
             `<div id="modal-cart-product-${this.product.id}" class="modal-cart-product">`+

@@ -19,6 +19,9 @@ class Product{
         this.discountPer = product.discountPer;
     }
     
+    /**
+     * @returns Object with the product info
+     */
     getProductInfo(){
         return({
             id: this.id,
@@ -33,11 +36,14 @@ class Product{
         })
     }
 
+    /**
+     * Function to add listeners
+     */
     addListener(){
         document.getElementById(`product-${this.uniqid}`).addEventListener('click', (e)=>{
             var node = e.target;
             while(node !== this){
-                // TODO EL PRODUCTO
+                // Btn if click in the product show product modal
                 if(node===null){
                     ModalProduct.changeVisibilty();
                     ModalCart.changeVisibilty(false);
@@ -45,7 +51,7 @@ class Product{
                     ModalProduct.changeInfo(this);
                     return;
                 }else if(node.id){
-                    // BOTON DE AGREGAR AL CARRITO
+                    // Btn if click in the 'add cart btn' add one product to the cart
                     if(node.id.startsWith('product-btn-add-cart-')){
                         User.addCart(this.getProductInfo(), 1, ()=>{
                             ModalCart.render();
@@ -54,7 +60,7 @@ class Product{
                         });
                         return;
                     }else 
-                    // BOTON DE AGREGAR A FAVORITOS
+                    // Btn to add or remove from favorites
                     if(node.id.startsWith('product-fav-icon-')){
                         this.changeFavorite();
                         return;
@@ -64,7 +70,7 @@ class Product{
             }
         });
 
-        // PRODUCTO ELEVADO
+        // When hover product show the button 'add cart' and favorite button
         const product = document.getElementById(`product-${this.uniqid}`);
         var isOver = false;
         product.addEventListener('mouseover', (e)=>{
@@ -86,6 +92,10 @@ class Product{
         });
     }
 
+    /**
+     * Function to add or remove from favorites
+     * @param {*} cb When the product is add to favorites execute the callback fucntion with variable to check if is favorite
+     */
     changeFavorite(cb){
         const favIcon = document.getElementById(`product-fav-icon-${this.uniqid}`);
         if(this.favourite){

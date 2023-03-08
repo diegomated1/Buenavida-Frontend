@@ -34,8 +34,13 @@
 }
 
 @media all and (max-width: 850px) {
-    .cart-bottom{
+    #cart-bottom{
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    #cart-summary-container{
+        width: 75%;
+        justify-self: center;
+        grid-column: span 2 / span 2;
     }
 }
 
